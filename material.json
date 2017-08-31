@@ -21,7 +21,13 @@
     ["tardy", ["tardio", "demorado", "lento"]],
     ["canister", ["lata", "bote", "contenedor"]],
     ["endeavour (to do sth)", ["empenno", "intento", "intentar hacer algo", "emprender hacer algo", "tratar de hacer algo"]],
-    ["decree", ["decreto", "decretar"]]
+    ["decree", ["decreto", "decretar"]],
+    ["harness", ["arnes", "arreo", "emplear"]],
+    ["easel", ["caballete"]],
+    ["squabble [over sth]", ["rennir [sobre algo]", "rennir", "rinna", "pendencia"]],
+    ["vie [with sb] [for sth]", ["competir [con alguien] [por algo]", "disputar [a alguien] [algo]", "rivalizar [con alguien] [por algo]"]],
+    ["jockey", ["jinete", "competir", "montara caballo"]]
+    ["denouement", "desenlace"]
 ],
 
 "fill": [
@@ -29,9 +35,15 @@
     ["Alice got in the car and (a sabiendas) left the hobb on", "knowingly"],
     ["Evil was driven away thanks to the (conjuntos) effort of men and elves", "joint"],
     ["The summer rains were heavy and several (goteras) appeared in the roof of my house", "leaks"]
+    ["Things got complicated, but being a (con recursos) girl, she solved every issue in the blinking of an eye.", "resourceful"],
+    ["The depression he fell into was a (resultado adicional) of his disease", "byproduct"],
+    ["The book is a reflection of the violence that (impregna) our society", "pervades"],
+    ["Contrary to what he expected, alcohol didn't help him to (aliviar) his burden"],
+    ["Their (propension) to small talk and banter was known in the whole town", "propensity"]
 ],
 
 "phrasal": [
+    ["bring", "forth", "With effort they managed to _ _ the project they had always dreamt of"]
 
 ],
 
@@ -40,6 +52,9 @@
     ["It's true that he was being somewhat mean, but her comment was out of line",
      "Es cierto que el estaba siendo algo mezquino, pero su comentario estaba fuera de tono"],
     ["Jugaremos rondas al mejor de tres", "We will play rounds best two out of three"]
+    ["Hoy la jefa nos mostro una nueva faceta de su personalidad", "Today the boss showed us a new facet to ther personality"],
+    ["Aunque ello es menos frecuente que en, digamos, las humanidades", "Although it is less frequent than in, say, the humaities"],
+    ["Despues de terminar su carrera, estaba deseoso de poner en practica lo que habia aprendido", "After finishing his degree, he was eager to put into practice what he had learnt"]
 ],
 
 "synonyms": [
