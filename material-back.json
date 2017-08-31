@@ -1,0 +1,44 @@
+ 
+{
+
+ "vocabulary": [
+    ["Can kafeste durmaz uçar, dünya bir han konan göçer, ay dolanır yıllar geçer", ["göçer yıllar"]]
+],
+
+"fill": [
+    ["The man (a propósito) dropped the jar, spilling the poisoned wine all over the place", "purposefully"],
+    ["Alice got in the car and (a sabiendas) left the hobb on", "knowingly"],
+    ["Evil was driven away thanks to the (conjuntos) effort of men and elves", "joint"],
+    ["The summer rains were heavy and several (goteras) appeared in the roof of my shouse", "leaks"],
+    ["Things got complicated, but being a (con recursos) girl, she solved every issue in the blinking of an eye.", "resourceful"],
+    ["The depression he fell into was a (resultado adicional) of his disease", "byproduct"],
+    ["The book is a reflection of the violence that (impregna) our society", "pervades"],
+    ["Contrary to what he expected, alcohol didn't help him to (aliviar) his burden", "alleviate"],
+    ["Their (propensión) to small talk and banter was known in the whole town", "propensity"]
+],
+
+"phrasal": [
+    [["bring", "forth"], ["llevar a cabo", "llevar adelante", "presentar", "crear"], "separable", "With effort they managed to _ _ the project they had always dreamt of"]
+],
+
+"expression": [
+    ["You could probably make money of it", "Probablemente podrías sacar dinero de ello"],
+    ["Your comment was out of line", "Tu comentario estuvo fuera de tono"],
+    ["We will play rounds best two out of three", "Jugaremos rondas al mejor de tres"],
+    ["Today the boss showed us a new facet to ther personality", "Hoy la jefa nos mostró una nueva faceta de su personalidad"],
+    ["Although it is less frequent than in, say, the humaities", "Aunque ello es menos frecuente que en, digamos, las humanidades"],
+    ["He was eager to put into practice what he had learned", "Él estaba deseoso de poner en practica lo que habia aprendido"]
+],
+
+"field": [
+    ["gritar", ["shout", "yell", "skriek", "scream", "squeal", "screech", "cry", "squall"]],
+    ["brillar", ["shine", "glow", "shimmer", "glitter", "glisten", "sparkle", "gleam", "glimmer", "radiate"]]
+],
+
+"idiom": [
+    ["the icing on the cake", "la guinda del pastel"],
+    ["the cherry on top of the cake", "la guinda del pastel"],
+    ["someone's Achilles' heel", "el talón de aquiles/punto débil de alguien"]
+]
+
+}

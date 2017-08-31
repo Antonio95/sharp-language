@@ -6,13 +6,19 @@ from colorama import init, Fore, Back, Style
 
 # TODOs
 # Revise points
-# Rename synonyms
 # Mode of synonyms
 # Drill options:
 #    review
 #    examples
 #    verbose (show all translations)
 # Tracking system
+# Accept new answer
+# Select types of exercises
+# Show data
+# acentos
+# [, ] quitar automaticamente?
+# derivative words
+# puntos en material
 
 ################################################################################
 # GLOBALS #
@@ -22,16 +28,19 @@ MATERIAL_PATH = '/home/antonio/Desktop/cpe/python/material.json'
 
 ACCEPT_NEW = False
 
+LETTERS = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
-_q_vocabulary, _q_fill, _q_expression, _q_synonyms = [], [], [], []
+N_MODIFIED_IDIOMS = 3
 
-_scores = {'yes': 1, 'no': 0, 'sorta': 0.5}
+SCORES = {'yes': 1, 'no': 0, 'sorta': 0.5}
 
-_feedback = {
+FEEDBACK = {
     1: Fore.CYAN + 'Correct! One point' + Fore.RESET, 
     0.5: Fore.YELLOW + 'So-so: half a point' + Fore.RESET, 
     0: Fore.RED +'Whoops, incorrect: no points' + Fore.RESET
 }
+
+_q_vocabulary, _q_fill, _q_phrasal, _q_expression, _q_field, _q_idiom = [], [], [], [], [], []
 
 
 ################################################################################
@@ -40,7 +49,10 @@ _feedback = {
 
 class Question(object):
 
-    def ask(mode):
+    def ask(self, mode):
+        return
+
+    def brief(self):
         return
 
 
@@ -62,7 +74,7 @@ class VocabularyQuestion(Question):
             print('    Possible meanings:', ', '.join(self.meanings))
             corr = input_loop('    Accept ' + ans + '? (yes, no, sorta): ', ['yes', 'no', 'sorta'])
 
-            return _scores[corr]
+            return SCORES[corr]
 
     def brief(self):
         return self.word
@@ -80,9 +92,11 @@ class FillQuestion(Question):
 
         ans = input('    ')
 
-        print('    Correct answer:', self.word)
-
-        return 1 if ans == self.word else 0
+        if ans == self.word:
+            return 1
+        else:
+            print('    Correct answer:', self.word)
+            return 0
 
     def brief(self):
         return self.word
@@ -104,21 +118,62 @@ class ExpressionQuestion(Question):
 
         corr = input_loop('    Accept answer? (yes, no, sorta): ', ['yes', 'no', 'sorta'])
 
-        return _scores[corr]
+        return SCORES[corr]
 
     def brief(self):
         return self.sentence
 
 
-class SynonymsQuestion(Question):
+class PhrasalQuestion(Question):
 
-    def __init__(self, word, synonyms):
+    def __init__(self, exp, meanings, separable, question):
+        self.verb, self.particles = exp[0], exp[1:]
+        self.meanings = meanings
+        self.separable = separable
+        self.question = question
+
+    def ask(self, mode=None):
+
+        if not mode:
+            mode = random.randint(0, 1)
+
+        if mode == 0:
+            print(Fore.YELLOW + '[*] Translate:', self.verb, ' '.join(self.particles), Fore.RESET)
+            ans = input('    ')
+
+            if ans in self.meanings:
+                return 1
+            else:
+                print('    Possible meanings:', ', '.join(self.meanings))
+                corr = input_loop('    Accept ' + ans + '? (yes, no, sorta): ', ['yes', 'no', 'sorta'])
+
+                return SCORES[corr]
+
+        elif mode == 1:
+            print(Fore.YELLOW + '[*] Complete with a phrasal verb:', self.question, Fore.RESET)
+            ans = input('    ').lower().split(' ')
+
+            exp = [self.verb] + self.particles
+            
+            if ans == exp:
+                return 1
+            else:
+                print('Expected answer: ' + '/'.join(exp))
+                return 0
+
+    def brief(self):
+        return ' '.join(self.exp)
+
+
+class FieldQuestion(Question):
+
+    def __init__(self, word, field):
         self.word = word
-        self.synonyms = synonyms
+        self.field = field
 
     def ask(self, mode=1):
 
-        print(Fore.YELLOW + '[*] Semantic field of: {} ({} words stored)'.format(self.word, len(self.synonyms)), Fore.RESET)
+        print(Fore.YELLOW + '[*] Semantic field of: {} ({} words stored)'.format(self.word, len(self.field)), Fore.RESET)
 
         ans = input('    Enter any number of comma-separated words: ')
         answers = ans.lower().replace(' ', '').split(',')
@@ -126,16 +181,16 @@ class SynonymsQuestion(Question):
 
         # taking care of potentially repeated answers
         for a in answers: 
-            if a in self.synonyms and a not in right:
+            if a in self.field and a not in right:
                 right.append(a)
-            if a not in self.synonyms and a not in wrong:
+            if a not in self.field and a not in wrong:
                 wrong.append(a)
 
-        print('    Expected synonyms ({}): '.format(len(self.synonyms)), ', '.join(self.synonyms))
+        print('    Expected synonyms ({}): '.format(len(self.field)), ', '.join(self.field))
         print('    Correct answers ({}): '.format(len(right)), ', '.join(right))
         print('    Wrong answers ({}): '.format(len(wrong)), ', '.join(wrong))
 
-        s, r = len(self.synonyms), len(right)
+        s, r = len(self.field), len(right)
         
         if float(r) / s >= mode:
             return 1
@@ -146,6 +201,50 @@ class SynonymsQuestion(Question):
 
     def brief(self):
         return self.word
+
+
+class IdiomQuestion(Question):
+
+    def __init__(self, idiom, meaning):
+        self.idiom = idiom
+        self.meaning = meaning
+
+    def ask(self, mode=0):
+
+        # remove apostrophes?
+        clean_idiom = self.idiom.replace("'", '')
+
+        hint = ''.join([' ' if c == ' ' else '_' for c in clean_idiom])
+        
+        if len(clean_idiom) < N_MODIFIED_IDIOMS:
+            raise Exception('Error: length of idiom: "{}" lower than number of characters to show ({}). Please modify your settings'.format(clean_idiom, N_MODIFIED_IDIOMS))
+
+        modified = []
+
+        for _ in range(N_MODIFIED_IDIOMS):
+            ind = random.randint(0, len(clean_idiom) - 1)
+            while clean_idiom[ind] not in LETTERS or ind in modified:
+                ind = random.randint(0, len(clean_idiom) - 1)
+
+            modified.append(ind)
+        
+        hint_list = list(hint)
+        
+        for ind in modified:
+            hint_list[ind] = clean_idiom[ind]
+
+        hint = ''.join(hint_list)
+
+        print(Fore.YELLOW + '[*] Type in an idiom or expression which means:', self.meaning + Fore.RESET)
+        input('    (Press Enter for hint when you have given it some thought)')
+        print('    ' + hint)
+        ans = input('    Answer: ')
+
+        if ans == self.idiom:
+            return 1
+        else:
+            print('    Correct answer:', self.idiom)
+            return 0
 
 
 ################################################################################
@@ -164,24 +263,26 @@ def praise(grade):
 
 def load():
 
-    global _q_vocabulary, _q_fill, _q_expression, _q_synonyms
+    global _q_vocabulary, _q_fill, _q_phrasal, _q_expression, _q_synonyms, _q_idiom
 
     with open(MATERIAL_PATH, 'r') as file:
         material = json.load(file)
 
-        _q_vocabulary = [VocabularyQuestion(v[0], v[1]) for v in material['vocabulary']]
-        _q_fill = [FillQuestion(f[0], f[1]) for f in material['fill']]
-        _q_expression = [ExpressionQuestion(e[0], e[1]) for e in material['expression']]
-        _q_synonyms = [SynonymsQuestion(s[0], s[1]) for s in material['synonyms']]
+        _q_vocabulary = [VocabularyQuestion(*v) for v in material['vocabulary']]
+        _q_fill = [FillQuestion(*f) for f in material['fill']]
+        _q_phrasal = [PhrasalQuestion(*p) for p in material['phrasal']]
+        _q_expression = [ExpressionQuestion(*e) for e in material['expression']]
+        _q_field = [FieldQuestion(*s) for s in material['field']]
+        _q_idiom = [IdiomQuestion(*i) for i in material['idiom']]
 
 
 def erase():
-    print('\u001b[2J\u001b[;H')
+    print('\u001b[2J\u001b[;f', end='')
 
 
 def input_loop(prompt, expected):
     
-    ans = ''
+    ans = None
     
     # no do-while in python </3
     while ans not in expected:
@@ -192,25 +293,33 @@ def input_loop(prompt, expected):
 
 def drill(n=10, review=False):
     
-    # print('Current setting:'
-    #     '\n    number of questions: {}'
-    #     '\n    review afterwards: {}'.format(n, review))
+    erase()
 
-    # ')
+    print('Current settings:', Fore.YELLOW,
+        '\n    * number of questions: {}'
+        '\n    * review afterwards: {}\n'.format(n, review), Fore.RESET)
+
+    settings = input_loop('Keep or change these settings? [keep, change]: ', ['keep', 'change'])
+
+    if 'change' == settings:
+        n = int(input(Fore.YELLOW + '    * Enter the number of questions: ' + Fore.RESET))
+        review = input_loop(Fore.YELLOW + '    * Give the option to review at the end? [yes, no]: ' + Fore.RESET, ['yes', 'no']) == 'yes'
+
+    erase()
 
     # controlar tamanyo
-    selected_q = random.sample(_q_vocabulary + _q_fill + _q_expression + _q_synonyms, n)
+    selected_q = random.sample(_q_vocabulary + _q_fill + _q_phrasal + _q_expression + _q_field + _q_idiom, n)
 
     score = 0
 
     for q in selected_q:
         res = q.ask()
-        print('    ->', _feedback[res], end='\n\n')
+        print('    ->', FEEDBACK[res], end='\n\n')
         
         score += res
         grade = 100.0 * score / n
     
-    print('Final score: {} out of {} ({}%). {}\n'.format(score, n, int(grade), praise(grade)))
+    print('Final score: {} out of {} ({}%). {}'.format(score, n, int(grade), praise(grade)))
 
     if review:
 
@@ -222,22 +331,20 @@ def drill(n=10, review=False):
 
         print('Score: {} out of {} ({}%)'.format(score, n, int(grade)), end='\n\n')
         print('In order to review, enter a sentence involving each of the previous questions\n'
-            'If at some point you cannot remember any more questions, press Enter twice')
+            'If at some point you cannot remember any more questions, enter an empty line to finish')
 
         for i in range(n):
-            new = input(str(i + 1) + ': ')
-            if '' == new and '' == old:
+            if '' == input(Fore.YELLOW + str(i + 1) + ': ' + Fore.RESET):
                 break
-            old = new
 
         print('\nThe concepts featured in the exercises were: ')
-        print('\n'.join([str(i + 1) + '. ' + q.brief() for q in selected_q]))
+        print('\n'.join([Fore.YELLOW + str(i + 1) + Fore.RESET + '. ' + q.brief() for (i, q) in enumerate(selected_q)]))
 
 
 init()
 
 load()
 
-drill(5, review=True)
+drill(10, review=True)
 
-print('\n')
+print()

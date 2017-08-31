@@ -5,61 +5,76 @@
     ["soar", ["elevarse", "subir como la espuma", "dispararse", "planear"]],
     ["surcar", ["plough", "plow", "plough through", "plow through", "score"]],
     ["eddy", ["remolino", "torbellino", "contracorriente"]],
-    ["ferreteria", ["ironmonger's", "hardware store"]],
-    ["waterway", ["canal", "rio navegable", "ria navegable"]],
+    ["ferretería", ["ironmonger's", "hardware store"]],
+    ["waterway", ["canal", "río navegable", "ría navegable"]],
     ["squall", ["borrasca", "chillido", "llanto"]],
     ["squeal", ["chillar"]],
-    ["annorar", ["yearn for", "long for"]],
+    ["añorar", ["yearn for", "long for"]],
     ["lo!", ["mirad!", "ved!"]],
-    ["locale", ["lugar", "sitio", "plaza", "escenario", "sede", "localizacion"]],
+    ["locale", ["lugar", "sitio", "plaza", "escenario", "sede", "localización"]],
     ["bask [in sth]", ["disfrutar [con algo]", "vivir a tope"]],
     ["amasar", ["amass"]],
     ["luxuriate [in sth]", ["deleitarse [en algo]", "regocijarse [en algo]", "disfrutar [de algo]"]],
-    ["swoop [{down, on, down on} sth]", ["caer en picado [sobre algo]", "abatirse [sobre algo]"], "caer en picado[sobre algo]"],
-    ["wisp", ["hilillo de humo", "voluta", "mechon"]],
+    ["swoop [{down, on, down on} sth]", ["caer en picado [sobre algo]", "abatirse [sobre algo]", "caer en picado[sobre algo]"]],
+    ["wisp", ["hilillo de humo", "voluta", "mechón"]],
     ["tow", ["remolcar", "arrastrar", "tirar"]],
-    ["tardy", ["tardio", "demorado", "lento"]],
+    ["tardy", ["tardío", "demorado", "lento"]],
     ["canister", ["lata", "bote", "contenedor"]],
-    ["endeavour (to do sth)", ["empenno", "intento", "intentar hacer algo", "emprender hacer algo", "tratar de hacer algo"]],
+    ["endeavour (to do sth)", ["empeño", "intento", "intentar hacer algo", "emprender hacer algo", "tratar de hacer algo"]],
     ["decree", ["decreto", "decretar"]],
-    ["harness", ["arnes", "arreo", "emplear"]],
+    ["harness", ["arnés", "arreo", "emplear"]],
     ["easel", ["caballete"]],
-    ["squabble [over sth]", ["rennir [sobre algo]", "rennir", "rinna", "pendencia"]],
+    ["squabble [over sth]", ["reñir [sobre algo]", "reñir", "riña", "pendencia"]],
     ["vie [with sb] [for sth]", ["competir [con alguien] [por algo]", "disputar [a alguien] [algo]", "rivalizar [con alguien] [por algo]"]],
-    ["jockey", ["jinete", "competir", "montara caballo"]]
-    ["denouement", "desenlace"]
+    ["jockey", ["jinete", "competir", "montar a caballo"]],
+    ["denouement", ["desenlace", "conclusión"]],
+    ["harry sb", ["acosar a alguien", "hostigar a alguien", "atormentar a alguien"]],
+    ["harrier", ["corredor de cross", "corredor", "lebrel", "aguilucho"]],
+    ["caja para cubiertos (UK)", ["canteen"]],
+    ["cantimplora", ["water bottle", "canteen", "flask"]],
+    ["posdoctoral [ES]", ["postdoctoral"]],
+    ["sleek", ["brillante", "listo", "elegante", "alisar", "acicalado"]]
 ],
 
 "fill": [
-    ["The man (a proposito) dropped the jar, spilling the poisoned wine all over the place", "purposefully"],
+    ["The man (a propósito) dropped the jar, spilling the poisoned wine all over the place", "purposefully"],
     ["Alice got in the car and (a sabiendas) left the hobb on", "knowingly"],
     ["Evil was driven away thanks to the (conjuntos) effort of men and elves", "joint"],
-    ["The summer rains were heavy and several (goteras) appeared in the roof of my house", "leaks"]
+    ["The summer rains were heavy and several (goteras) appeared in the roof of my shouse", "leaks"],
     ["Things got complicated, but being a (con recursos) girl, she solved every issue in the blinking of an eye.", "resourceful"],
     ["The depression he fell into was a (resultado adicional) of his disease", "byproduct"],
     ["The book is a reflection of the violence that (impregna) our society", "pervades"],
-    ["Contrary to what he expected, alcohol didn't help him to (aliviar) his burden"],
-    ["Their (propension) to small talk and banter was known in the whole town", "propensity"]
+    ["Contrary to what he expected, alcohol didn't help him to (aliviar) his burden", "alleviate"],
+    ["Their (propensión) to small talk and banter was known in the whole town", "propensity"],
+    ["I still haven't received an offer from the university and I am (en ascuas)", "on tenterhooks"],
+    ["You said you were going to uni, but (todo el tiempo, mientras tanto) you were playing cards in the cafeteria", "all the while"],
+    ["This year I have the (propósito) to go to the gym every week", "resolution"]
 ],
 
 "phrasal": [
-    ["bring", "forth", "With effort they managed to _ _ the project they had always dreamt of"]
-
+    [["bring", "forth"], ["llevar a cabo", "llevar adelante", "presentar", "crear"], "separable", "With effort they managed to _ _ the project they had always dreamt of"]
 ],
 
 "expression": [
-    ["You could probably make money of it", "Probablemente podrias sacar dinero de ello"],
-    ["It's true that he was being somewhat mean, but her comment was out of line",
-     "Es cierto que el estaba siendo algo mezquino, pero su comentario estaba fuera de tono"],
-    ["Jugaremos rondas al mejor de tres", "We will play rounds best two out of three"]
-    ["Hoy la jefa nos mostro una nueva faceta de su personalidad", "Today the boss showed us a new facet to ther personality"],
-    ["Aunque ello es menos frecuente que en, digamos, las humanidades", "Although it is less frequent than in, say, the humaities"],
-    ["Despues de terminar su carrera, estaba deseoso de poner en practica lo que habia aprendido", "After finishing his degree, he was eager to put into practice what he had learnt"]
+    ["You could probably make money of it", "Probablemente podrías sacar dinero de ello"],
+    ["Your comment was out of line", "Tu comentario estuvo fuera de tono"],
+    ["We will play rounds best two out of three", "Jugaremos rondas al mejor de tres"],
+    ["Today the boss showed us a new facet to ther personality", "Hoy la jefa nos mostró una nueva faceta de su personalidad"],
+    ["Although it is less frequent than in, say, the humaities", "Aunque ello es menos frecuente que en, digamos, las humanidades"],
+    ["He was eager to put into practice what he had learned", "Él estaba deseoso de poner en practica lo que habia aprendido"],
+    ["The soldier took aim at the queen", "El soldado apuntó a la reina"]
 ],
 
-"synonyms": [
+"field": [
     ["gritar", ["shout", "yell", "skriek", "scream", "squeal", "screech", "cry", "squall"]],
-    ["brillar", ["shine", "glow", "shimmer", "glitter", "glisten", "sparkle", "gleam", "glimmer", "radiate"]]
+    ["brillar", ["shine", "glow", "shimmer", "glitter", "glisten", "sparkle", "gleam", "glimmer", "radiate"]],
+    ["mordaz", ["mordant", "biting", "scathing", "caustic", "sarcastic"]]
+],
+
+"idiom": [
+    ["the icing on the cake", "la guinda del pastel"],
+    ["the cherry on top of the cake", "la guinda del pastel"],
+    ["someone's Achilles' heel", "el talón de Aquiles/punto débil de alguien"]
 ]
 
 }
