@@ -1,0 +1,50 @@
+ 
+{
+
+ "vocabulary": [
+    ["soar", ["elevarse", "subir como la espuma", "dispararse", "planear"]],
+    ["surcar", ["plough", "plow", "plough through", "plow through", "score"]],
+    ["eddy", ["remolino", "torbellino", "contracorriente"]],
+    ["ferreteria", ["ironmonger's", "hardware store"]],
+    ["waterway", ["canal", "rio navegable", "ria navegable"]],
+    ["squall", ["borrasca", "chillido", "llanto"]],
+    ["squeal", ["chillar"]],
+    ["annorar", ["yearn for", "long for"]],
+    ["lo!", ["mirad!", "ved!"]],
+    ["locale", ["lugar", "sitio", "plaza", "escenario", "sede", "localizacion"]],
+    ["bask [in sth]", ["disfrutar [con algo]", "vivir a tope"]],
+    ["amasar", ["amass"]],
+    ["luxuriate [in sth]", ["deleitarse [en algo]", "regocijarse [en algo]", "disfrutar [de algo]"]],
+    ["swoop [{down, on, down on} sth]", ["caer en picado [sobre algo]", "abatirse [sobre algo]"], "caer en picado[sobre algo]"],
+    ["wisp", ["hilillo de humo", "voluta", "mechon"]],
+    ["tow", ["remolcar", "arrastrar", "tirar"]],
+    ["tardy", ["tardio", "demorado", "lento"]],
+    ["canister", ["lata", "bote", "contenedor"]],
+    ["endeavour (to do sth)", ["empenno", "intento", "intentar hacer algo", "emprender hacer algo", "tratar de hacer algo"]],
+    ["decree", ["decreto", "decretar"]]
+],
+
+"fill": [
+    ["The man (a proposito) dropped the jar, spilling the poisoned wine all over the place", "purposefully"],
+    ["Alice got in the car and (a sabiendas) left the hobb on", "knowingly"],
+    ["Evil was driven away thanks to the (conjuntos) effort of men and elves", "joint"],
+    ["The summer rains were heavy and several (goteras) appeared in the roof of my house", "leaks"]
+],
+
+"phrasal": [
+
+],
+
+"expression": [
+    ["You could probably make money of it", "Probablemente podrias sacar dinero de ello"],
+    ["It's true that he was being somewhat mean, but her comment was out of line",
+     "Es cierto que el estaba siendo algo mezquino, pero su comentario estaba fuera de tono"],
+    ["Jugaremos rondas al mejor de tres", "We will play rounds best two out of three"]
+],
+
+"synonyms": [
+    ["gritar", ["shout", "yell", "skriek", "scream", "squeal", "screech", "cry", "squall"]],
+    ["brillar", ["shine", "glow", "shimmer", "glitter", "glisten", "sparkle", "gleam", "glimmer", "radiate"]]
+]
+
+}
