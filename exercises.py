@@ -162,7 +162,7 @@ class PhrasalQuestion(Question):
                 return 0
 
     def brief(self):
-        return ' '.join(self.exp)
+        return self.verb + ' ' + ' '.join(self.particles)
 
 
 class FieldQuestion(Question):
@@ -245,6 +245,9 @@ class IdiomQuestion(Question):
         else:
             print('    Correct answer:', self.idiom)
             return 0
+
+    def brief(self):
+        return self.idiom
 
 
 ################################################################################
@@ -347,4 +350,6 @@ load()
 
 drill(10, review=True)
 
-print()
+input('\n(Press enter to finish)')
+
+erase()

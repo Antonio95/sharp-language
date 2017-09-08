@@ -33,7 +33,21 @@
     ["caja para cubiertos (UK)", ["canteen"]],
     ["cantimplora", ["water bottle", "canteen", "flask"]],
     ["posdoctoral [ES]", ["postdoctoral"]],
-    ["sleek", ["brillante", "listo", "elegante", "alisar", "acicalado"]]
+    ["sleek", ["brillante", "listo", "elegante", "alisar", "acicalado"]],
+    ["tapizar", ["upholster"]],
+    ["unruly", ["revoltoso, rebelde"]],
+    ["gig", ["actuación", "curro"]],
+    ["gig economy", ["vida de curros temporales"]],
+    ["dormilón", ["sleepyhead"]],
+    ["aplomo", ["aplomb"]],
+    ["maverick", ["inconformista", "disidente"]],
+    ["cetrería", ["falconry", "hawking"]],
+    ["pomposo", ["luxurious", "opulent", "bombastic"]],
+    ["pompous", ["pomposo", "pretencioso", "grandilocuente"]],
+    ["imponente", ["imposing", "impressive"]],
+    ["baja por maternidad", ["maternity leave"]],
+    ["año sabático", ["sabbatical leave", "sabbatical year"]],
+    ["humor acuoso", "aqueous humour"]
 ],
 
 "fill": [
@@ -48,11 +62,18 @@
     ["Their (propensión) to small talk and banter was known in the whole town", "propensity"],
     ["I still haven't received an offer from the university and I am (en ascuas)", "on tenterhooks"],
     ["You said you were going to uni, but (todo el tiempo, mientras tanto) you were playing cards in the cafeteria", "all the while"],
-    ["This year I have the (propósito) to go to the gym every week", "resolution"]
+    ["This year I have the (propósito) to go to the gym every week", "resolution"],
+    ["The vegetation on the banks is so thickly planted that the surface of the earth is not (abrasionada) by the torrents", "abraded"],
+    ["The piece by Bach was (con maestría) performed by the violinist", "masterfully"],
+    ["As (poco manejable) as the motorbike was, he enjoyed the race", "unwieldy"],
+    ["Los marineros (desplegaron) las velas y el barco zarpó", "unfurled"],
+    ["The imposing cruise ploughed through the sea at ten (nudos) an hour", "knots"],
+    ["The hospital was (otorgado) £20m for renovation", "endowed"]
 ],
 
 "phrasal": [
-    [["bring", "forth"], ["llevar a cabo", "llevar adelante", "presentar", "crear"], "separable", "With effort they managed to _ _ the project they had always dreamt of"]
+    [["bring", "forth"], ["llevar a cabo", "llevar adelante", "presentar", "crear"], "separable", "With effort they managed to b_ _ the project they had always dreamt of"],
+    [["lash", "down"], ["llover con fuerza", "sujetar con fuerza"], "intransitive", "I wanted to do some hiking yesterday, but rain was l_ _ all through the day"]
 ],
 
 "expression": [
@@ -62,7 +83,14 @@
     ["Today the boss showed us a new facet to ther personality", "Hoy la jefa nos mostró una nueva faceta de su personalidad"],
     ["Although it is less frequent than in, say, the humaities", "Aunque ello es menos frecuente que en, digamos, las humanidades"],
     ["He was eager to put into practice what he had learned", "Él estaba deseoso de poner en practica lo que habia aprendido"],
-    ["The soldier took aim at the queen", "El soldado apuntó a la reina"]
+    ["The soldier took aim at the queen", "El soldado apuntó a la reina"],
+    ["You should buy more of those pastries I like so well", "Deberías comprar más de esas empanadillas que tanto me gustan"],
+    ["If you say it calmly, he will no doubt listen to you", "Si lo dices con calma, sin duda te escuchará"],
+    ["After months of hard work, the plan came to fruition", "Después de meses de duro trabajo, el plan dio sus frutos"],
+    ["I have been looking for the t-shirt for days, but I still haven't given it up as lost", "Llevo días buscando la camiseta, pero aún no la he dado por perdida"],
+    ["So many years of alcoholism ended up taking a toll on him", "Tantos años de alcoholismo acabaron pasándole factura"],
+    ["Could you advance me £500 until Tuesday?", "Podrías adelantarme 500£ hasta el martes?"],
+    ["You are making considerable advances in your studies", "Estás haciendo avances considerables en tus estudios"]
 ],
 
 "field": [
@@ -74,7 +102,14 @@
 "idiom": [
     ["the icing on the cake", "la guinda del pastel"],
     ["the cherry on top of the cake", "la guinda del pastel"],
-    ["someone's Achilles' heel", "el talón de Aquiles/punto débil de alguien"]
+    ["someone's Achilles' heel", "el talón de Aquiles/punto débil de alguien"],
+    ["bring all the boys to the yard", "ser irresistible para los chicos, especialmente sexualmente"],
+    ["there's a lid for every pot", "siempre hay un roto para un descosido"],
+    ["Don't humor me", "no me des la razón como a los tontos"]
+],
+
+"choice": [
+
 ]
 
 }
