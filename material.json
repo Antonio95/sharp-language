@@ -47,7 +47,10 @@
     ["imponente", ["imposing", "impressive"]],
     ["baja por maternidad", ["maternity leave"]],
     ["año sabático", ["sabbatical leave", "sabbatical year"]],
-    ["humor acuoso", "aqueous humour"]
+    ["humor acuoso", ["aqueous humour"]],
+    ["reportaje", ["feature", "article", "feature article", "report"]],
+    ["cazador furtivo", ["poacher"]],
+    ["pictórico", ["pictorial"]]
 ],
 
 "fill": [
@@ -68,7 +71,8 @@
     ["As (poco manejable) as the motorbike was, he enjoyed the race", "unwieldy"],
     ["Los marineros (desplegaron) las velas y el barco zarpó", "unfurled"],
     ["The imposing cruise ploughed through the sea at ten (nudos) an hour", "knots"],
-    ["The hospital was (otorgado) £20m for renovation", "endowed"]
+    ["The hospital was (otorgado) £20m for renovation", "endowed"],
+    ["Our ancestors (asumieron) the task of exploring a vast, unknow continent", "undertook"]
 ],
 
 "phrasal": [
@@ -80,7 +84,7 @@
     ["You could probably make money of it", "Probablemente podrías sacar dinero de ello"],
     ["Your comment was out of line", "Tu comentario estuvo fuera de tono"],
     ["We will play rounds best two out of three", "Jugaremos rondas al mejor de tres"],
-    ["Today the boss showed us a new facet to ther personality", "Hoy la jefa nos mostró una nueva faceta de su personalidad"],
+    ["Today the boss showed us a new facet to her personality", "Hoy la jefa nos mostró una nueva faceta de su personalidad"],
     ["Although it is less frequent than in, say, the humaities", "Aunque ello es menos frecuente que en, digamos, las humanidades"],
     ["He was eager to put into practice what he had learned", "Él estaba deseoso de poner en practica lo que habia aprendido"],
     ["The soldier took aim at the queen", "El soldado apuntó a la reina"],
@@ -90,13 +94,19 @@
     ["I have been looking for the t-shirt for days, but I still haven't given it up as lost", "Llevo días buscando la camiseta, pero aún no la he dado por perdida"],
     ["So many years of alcoholism ended up taking a toll on him", "Tantos años de alcoholismo acabaron pasándole factura"],
     ["Could you advance me £500 until Tuesday?", "Podrías adelantarme 500£ hasta el martes?"],
-    ["You are making considerable advances in your studies", "Estás haciendo avances considerables en tus estudios"]
+    ["You are making considerable advances in your studies", "Estás haciendo avances considerables en tus estudios"],
+    ["This book deals with history", "Este libro trata de historia"]
 ],
 
 "field": [
-    ["gritar", ["shout", "yell", "skriek", "scream", "squeal", "screech", "cry", "squall"]],
-    ["brillar", ["shine", "glow", "shimmer", "glitter", "glisten", "sparkle", "gleam", "glimmer", "radiate"]],
-    ["mordaz", ["mordant", "biting", "scathing", "caustic", "sarcastic"]]
+    ["Ways to express 'gritar'", ["shout", "yell", "skriek", "scream", "squeal", "screech", "cry", "squall"]],
+    ["Ways to express 'brillar'", ["shine", "glow", "shimmer", "glitter", "glisten", "sparkle", "gleam", "glimmer", "radiate"]],
+    ["Ways to express 'mordaz'", ["mordant", "biting", "scathing", "caustic", "sarcastic"]],
+    ["[Banish, Essay Verbs -> Characters]\n    The main character (tries to) to overcome his childhood ghosts", ["attempts", "seeks", "sets out", "strives", "struggles", "endeavours", "determines", "battles", "fights"]],
+    ["[Banish, Essay Verbs -> Characters]\n    Halfway through the story, she (discovers, understands) the truth", ["learns", "understands", "figures out", "recognises", "finds out"]],
+    ["[Banish, Essay Verbs -> Characters]\n    The protagonist (suffers, lives) the difficulties of life on the streets", ["deals with", "copes with", "endures", "grapples with", "experiences", "undergoes", "faces"]],
+    ["[Banish, Essay Verbs -> Compare/Contrast]\n    This feature article (-) the consequences of poaching in developing countries", ["analyses", "explores", "identifies", "presents", "describes", "examines", "focuses on", "deals with", "explains", "points out", "highlights"]],
+    ["[Banish, Essay Verbs -> Describe]\n    The excerpt (describes) some pictorial techniques used by pre-Raphaelite artists", ["depicts", "illustrates", "portrays", "presents"]]
 ],
 
 "idiom": [

@@ -3,6 +3,7 @@ import random
 import readline
 import json
 from colorama import init, Fore, Back, Style
+import signal
 
 # TODOs
 # Revise points
@@ -39,6 +40,8 @@ FEEDBACK = {
     0.5: Fore.YELLOW + 'So-so: half a point' + Fore.RESET, 
     0: Fore.RED +'Whoops, incorrect: no points' + Fore.RESET
 }
+
+CASUAL = False
 
 _q_vocabulary, _q_fill, _q_phrasal, _q_expression, _q_field, _q_idiom = [], [], [], [], [], []
 
@@ -167,13 +170,13 @@ class PhrasalQuestion(Question):
 
 class FieldQuestion(Question):
 
-    def __init__(self, word, field):
-        self.word = word
+    def __init__(self, prompt, field):
+        self.prompt = prompt
         self.field = field
 
     def ask(self, mode=1):
 
-        print(Fore.YELLOW + '[*] Semantic field of: {} ({} words stored)'.format(self.word, len(self.field)), Fore.RESET)
+        print(Fore.YELLOW + '[*] {} ({} words stored)'.format(self.prompt, len(self.field)), Fore.RESET)
 
         ans = input('    Enter any number of comma-separated words: ')
         answers = ans.lower().replace(' ', '').split(',')
@@ -200,7 +203,7 @@ class FieldQuestion(Question):
             return 0
 
     def brief(self):
-        return self.word
+        return self.prompt
 
 
 class IdiomQuestion(Question):
@@ -254,9 +257,16 @@ class IdiomQuestion(Question):
 # METHODS #
 ###########
 
+def signal_handler_casual_mode(signal, frame):
+    
+    global CASUAL
+
+    CASUAL = not CASUAL    
+    print('\u001b[s', '\u001b[;f', Fore.MAGENTA, 'Casual mode: ', 'ON ' if CASUAL else 'OFF', Fore.RESET, '\u001b[u', sep='', end='', flush=True)
+
 def praise(grade):
     if 0 <= grade and grade < 40: print('Madre mia, la que ha liado pollito...')
-    elif 40 <= grade and grade < 60: return 'Asi va a sacar el CPE tu prima.'
+    elif 40 <= grade and grade < 60: return 'Así se va a sacar el CPE tu prima'
     elif 60 <= grade and grade < 80: return 'Need to work on these a bit more!'
     elif 80 <= grade and grade < 90: return 'Good job! Practice makes perfect tho'
     elif 90 <= grade and grade < 100: return 'Amazing, you pompous piece of... knowledge'
@@ -279,8 +289,8 @@ def load():
         _q_idiom = [IdiomQuestion(*i) for i in material['idiom']]
 
 
-def erase():
-    print('\u001b[2J\u001b[;f', end='')
+def erase(nl=True):
+    print('\u001b[2J\u001b[;f', end='\n' if nl else '')
 
 
 def input_loop(prompt, expected):
@@ -345,11 +355,19 @@ def drill(n=10, review=False):
 
 
 init()
-
 load()
+signal.signal(signal.SIGTSTP, signal_handler_casual_mode)
+
+erase()
+
+print('Sharp Language v0.5', Fore.MAGENTA, '\nhttps://github.com/Antonio95/', Fore.RESET)
+print('Use ctrl+z at any time to switch casual mode on or off')
+
+input('\n(Press Enter to continue)')
+
 
 drill(10, review=True)
 
-input('\n(Press enter to finish)')
+input('\n(Press Enter to finish)')
 
-erase()
+erase(nl=False)
