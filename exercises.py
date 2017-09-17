@@ -1,15 +1,17 @@
 
+import signal
 import random
+import collections
 import readline
+
 import json
 from colorama import init, Fore, Back, Style
-import signal
+
 
 # TODOs
+# format review (limit to 99 questions/drill?)
 # Revise points
-# Mode of synonyms
 # Drill options:
-#    review
 #    examples
 #    verbose (show all translations)
 # Tracking system
@@ -20,6 +22,8 @@ import signal
 # [, ] quitar automaticamente?
 # derivative words
 # puntos en material
+# PHONETICS; EXERCISES: HOMOPHONES
+
 
 ################################################################################
 # GLOBALS #
@@ -33,6 +37,8 @@ LETTERS = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
 N_MODIFIED_IDIOMS = 3
 
+N_QUESTIONS_DIGITS = 2
+
 SCORES = {'yes': 1, 'no': 0, 'sorta': 0.5}
 
 FEEDBACK = {
@@ -43,7 +49,16 @@ FEEDBACK = {
 
 CASUAL = False
 
-_q_vocabulary, _q_fill, _q_phrasal, _q_expression, _q_field, _q_idiom = [], [], [], [], [], []
+# In order to always display/ask about the types in the same order
+QUESTIONS = collections.OrderedDict([
+    ("Vocabulary", {'ask': True}),
+    ("Fill in", {'ask': True}),
+    ("Phrasal verbs", {'ask': True}),
+    ("Expression", {'ask': True}),
+    ("Word field", {'ask': True}),
+    ("Idioms", {'ask': True}),
+    ("Multiple choice", {'ask': True})
+])
 
 
 ################################################################################
@@ -161,7 +176,7 @@ class PhrasalQuestion(Question):
             if ans == exp:
                 return 1
             else:
-                print('Expected answer: ' + '/'.join(exp))
+                print('    Expected answer: ' + '/'.join(exp))
                 return 0
 
     def brief(self):
@@ -243,7 +258,7 @@ class IdiomQuestion(Question):
         print('    ' + hint)
         ans = input('    Answer: ')
 
-        if ans == self.idiom:
+        if ans.lower() == self.idiom.lower():
             return 1
         else:
             print('    Correct answer:', self.idiom)
@@ -251,6 +266,39 @@ class IdiomQuestion(Question):
 
     def brief(self):
         return self.idiom
+
+
+class MultipleChoiceQuestion(Question):
+
+    def __init__(self, question, answers):
+        self.question = question
+        self.answers = answers
+
+    def ask(self, mode=0):
+
+        print(Fore.YELLOW + '[*]', self.question, Fore.RESET)
+
+        right = self.answers[0]
+        shuffled = list(self.answers)
+        random.shuffle(shuffled)
+        n = len(shuffled)
+
+        for (i, opt) in enumerate(shuffled):
+            print('    ', i + 1, ': ', opt, sep='')
+
+        print('')
+
+        ans = number_input_loop('    Enter the number corresponding to the right answer: ', 1, n) - 1
+        
+        if shuffled[ans] == right:
+            return 1
+        else:
+            print("    Ouch, it was:", right)
+            return 0
+            
+
+    def brief(self):
+        return self.question
 
 
 ################################################################################
@@ -276,17 +324,18 @@ def praise(grade):
 
 def load():
 
-    global _q_vocabulary, _q_fill, _q_phrasal, _q_expression, _q_synonyms, _q_idiom
+    global QUESTIONS
 
     with open(MATERIAL_PATH, 'r') as file:
         material = json.load(file)
 
-        _q_vocabulary = [VocabularyQuestion(*v) for v in material['vocabulary']]
-        _q_fill = [FillQuestion(*f) for f in material['fill']]
-        _q_phrasal = [PhrasalQuestion(*p) for p in material['phrasal']]
-        _q_expression = [ExpressionQuestion(*e) for e in material['expression']]
-        _q_field = [FieldQuestion(*s) for s in material['field']]
-        _q_idiom = [IdiomQuestion(*i) for i in material['idiom']]
+        QUESTIONS["Vocabulary"]["exercises"] = [VocabularyQuestion(*v) for v in material['vocabulary']]
+        QUESTIONS["Fill in"]["exercises"] = [FillQuestion(*f) for f in material['fill']]
+        QUESTIONS["Phrasal verbs"]["exercises"] = [PhrasalQuestion(*p) for p in material['phrasal']]
+        QUESTIONS["Expression"]["exercises"] = [ExpressionQuestion(*e) for e in material['expression']]
+        QUESTIONS["Word field"]["exercises"] = [FieldQuestion(*s) for s in material['field']]
+        QUESTIONS["Idioms"]["exercises"] = [IdiomQuestion(*i) for i in material['idiom']]
+        QUESTIONS["Multiple choice"]["exercises"] = [MultipleChoiceQuestion(*c) for c in material['choice']]
 
 
 def erase(nl=True):
@@ -301,28 +350,67 @@ def input_loop(prompt, expected):
     while ans not in expected:
         ans = input(prompt).lower()
 
+    # TODO give feedback?
+
+    return ans
+
+
+def number_input_loop(prompt, v_min, v_max):
+    
+    # TODO give feedback?
+
+    ans = 0
+
+    # Awkward flag due to the lack of do-while and potentially unbounded min/max
+    enter = True
+
+    while enter == True or ans < v_min or ans > v_max:
+        ans = input(prompt)
+        
+        try:
+            ans = int(ans)
+            enter = False
+        except:
+            enter = True
+            continue
+
     return ans
 
 
 def drill(n=10, review=False):
-    
+
+    global QUESTIONS
+
     erase()
 
     print('Current settings:', Fore.YELLOW,
         '\n    * number of questions: {}'
         '\n    * review afterwards: {}\n'.format(n, review), Fore.RESET)
 
-    settings = input_loop('Keep or change these settings? [keep, change]: ', ['keep', 'change'])
+    settings = input_loop('Keep or change these settings? [keep, change]: ', ['keep', 'k', 'change', 'c'])
 
-    if 'change' == settings:
-        n = int(input(Fore.YELLOW + '    * Enter the number of questions: ' + Fore.RESET))
+    if 'change' == settings or 'c' == settings:
+        n = number_input_loop(Fore.YELLOW + '    * Enter the number of questions (1 to {}): '.format(10**N_QUESTIONS_DIGITS - 1) + Fore.RESET, 1, 10**N_QUESTIONS_DIGITS - 1)
         review = input_loop(Fore.YELLOW + '    * Give the option to review at the end? [yes, no]: ' + Fore.RESET, ['yes', 'no']) == 'yes'
+        print(Fore.YELLOW + '    * Select which types of questions you want [yes, no]:' + Fore.RESET)
+        for typ, val in QUESTIONS.items():
+            val['ask'] = input_loop(Fore.YELLOW + ' ' * 8 + '- ' + typ + ': ' + Fore.RESET, ['yes', 'no']) == 'yes'
 
     erase()
 
-    # controlar tamanyo
-    selected_q = random.sample(_q_vocabulary + _q_fill + _q_phrasal + _q_expression + _q_field + _q_idiom, n)
+    questions = []
 
+    for val in QUESTIONS.values():
+        if val['ask']:
+            questions += val['exercises']
+
+    if len(questions) < n:
+        print(Fore.YELLOW + '/!\\ Number of requested questions ({}) larger than that of available ones ({})'
+                            '\n    Drill reduced to {} questions'.format(n, len(questions), n), Fore.RESET + '\n')
+        n = len(questions)
+
+    selected_q = random.sample(questions, n)
+    
     score = 0
 
     for q in selected_q:
@@ -344,15 +432,19 @@ def drill(n=10, review=False):
 
         print('Score: {} out of {} ({}%)'.format(score, n, int(grade)), end='\n\n')
         print('In order to review, enter a sentence involving each of the previous questions\n'
-            'If at some point you cannot remember any more questions, enter an empty line to finish')
+              'If at some point you cannot remember any more questions, enter an empty line to finish')
 
         for i in range(n):
-            if '' == input(Fore.YELLOW + str(i + 1) + ': ' + Fore.RESET):
+            if '' == input(Fore.YELLOW + '{:4}'.format(str(i + 1) + ':') + Fore.RESET):
                 break
 
-        print('\nThe concepts featured in the exercises were: ')
-        print('\n'.join([Fore.YELLOW + str(i + 1) + Fore.RESET + '. ' + q.brief() for (i, q) in enumerate(selected_q)]))
+        print('\nThe concepts featured in the questions were: ')
+        print('\n'.join([Fore.YELLOW + '{:4}'.format(str(i + 1) + '.') + Fore.RESET + q.brief() for (i, q) in enumerate(selected_q)]))
 
+
+################################################################################
+# MAIN #
+########
 
 init()
 load()
@@ -360,11 +452,15 @@ signal.signal(signal.SIGTSTP, signal_handler_casual_mode)
 
 erase()
 
-print('Sharp Language v0.5', Fore.MAGENTA, '\nhttps://github.com/Antonio95/', Fore.RESET)
-print('Use ctrl+z at any time to switch casual mode on or off')
+print('Sharp Language v0.6, by Antonio Mejías', Fore.BLUE, '\nhttps://github.com/Antonio95/', Fore.RESET)
+print('\nNumber of items stored:')
+for typ, val in QUESTIONS.items():
+    print('    ' + typ, ': ', len(val['exercises']), sep='')
+print('    * Total:', sum([len(v['exercises']) for v in QUESTIONS.values()]))
+print('\nUse ' + Fore.YELLOW + 'ctrl+z ' + Fore.RESET + 'at any time to switch casual mode on or off')
+print('Use ' + Fore.RED + 'ctrl+c ' + Fore.RESET + 'at any time to quit')
 
 input('\n(Press Enter to continue)')
-
 
 drill(10, review=True)
 

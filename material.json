@@ -1,7 +1,7 @@
  
 {
 
- "vocabulary": [
+"vocabulary": [
     ["soar", ["elevarse", "subir como la espuma", "dispararse", "planear"]],
     ["surcar", ["plough", "plow", "plough through", "plow through", "score"]],
     ["eddy", ["remolino", "torbellino", "contracorriente"]],
@@ -50,7 +50,36 @@
     ["humor acuoso", ["aqueous humour"]],
     ["reportaje", ["feature", "article", "feature article", "report"]],
     ["cazador furtivo", ["poacher"]],
-    ["pictórico", ["pictorial"]]
+    ["pictórico", ["pictorial"]],
+    ["zarpar", ["set sail", "weigh anchor"]],
+    ["visera", ["sun visor", "visor", "eyeshade", "peak"]],
+    ["(to be) steamed", ["(estar) que trinas", "(estar) frenético", "(estar) que echas humo"]],
+    ["embalse", "reservoir"],
+    ["savant", ["sabio", "erudito"]],
+    ["neurotransmisor", ["neurotransmitter"]],
+    ["hamper", ["dificultar", "entorpecer", "obstaculizar", "cesto", "canasta"]],
+    ["proceedings", ["pleito", "proceso judicial", "actos", "actas", "recistros"]],
+    ["tiovivo", ["merry-go-round", "carousel", "roundabout"]],
+    ["rogue", ["pícaro", "granuja", "solitario", "deshonesto"]],
+    ["tocar(le a alguien) el gordo", ["hit the jackpot"]],
+    ["farmstead", ["granja", "cortijo", "alquería"]],
+    ["misdeed", ["fechoría", "felonía"]],
+    ["whittle", ["tallar", "esculpir"]],
+    ["cincel", ["chisel"]],
+    ["largometraje", ["feature film"]],
+    ["smother", ["asfixiar"]],
+    ["perejil", "parsley"],
+    ["cebada", "barley"],
+    ["hinojo", ["fennel"]],
+    ["(puré de) avena", "oatmeal"],
+    ["sorgo", ["sorghum"]],
+    ["mijo", ["millet"]],
+    ["rind", ["cáscara", "piel", "corteza"]],
+    ["corteza terrestre", "Earth's crust"],
+    ["cortezas (de cerdo)", ["pork rinds", "pork scratchings"]],
+    ["Noche de Paz (canción)", ["Silent Night"]],
+    ["Nochebuena", ["Christmas Eve"]],
+    ["mucho mejor", ["all the better", "so much the better"]]
 ],
 
 "fill": [
@@ -69,15 +98,33 @@
     ["The vegetation on the banks is so thickly planted that the surface of the earth is not (abrasionada) by the torrents", "abraded"],
     ["The piece by Bach was (con maestría) performed by the violinist", "masterfully"],
     ["As (poco manejable) as the motorbike was, he enjoyed the race", "unwieldy"],
-    ["Los marineros (desplegaron) las velas y el barco zarpó", "unfurled"],
+    ["The sailors (desplegaron) the sails and the ship weighed anchor", "unfurled"],
     ["The imposing cruise ploughed through the sea at ten (nudos) an hour", "knots"],
     ["The hospital was (otorgado) £20m for renovation", "endowed"],
-    ["Our ancestors (asumieron) the task of exploring a vast, unknow continent", "undertook"]
+    ["Our ancestors (asumieron) the task of exploring a vast, unknow continent", "undertook"],
+    ["The horses are ready, (su Excelencia)", "your Excellency"],
+    ["The police informed us that there was a killer (suelto) in the neighbourhood", "on the loose"],
+    ["With his car wrecked and no way to get to work, he found himself (en un aprieto)", "in a bind"],
+    ["I'm not going home on foot, (en cualquier caso)", "at any rate"],
+    ["The investigation was (obstaculizada) by their lack of cooperation", "hampered"],
+    ["The idea revulses me, but I see no other way of (proceder)", "proceeding"],
+    ["It's time you (empieces a escribir) and reply to that letter", "put pen to paper"],
+    ["The text is perfect, I wouldn't (cambíaría nada)", "put pen to paper"],
+    ["He (fue escultor) for ten years before taking up painting", "sculpted"],
+    ["The mint has (asfixiado) my parsley", "smothered"],
+    ["Can you get a (bote) of parsley for tonight's dinner too?", "jar"],
+    ["It was only last month that we learnt he has an (incurable) disease", "incurable"],
+    ["The (reconstrucción) of the crime helped the police a great deal", "reconstruction"],
+    ["Fifty years after their wedding, they decided to (recrear) the ceremony", "reenact"],
+    ["In the 16th century, Venice was the (centro neurálgico) of global communications", "nerve centre"]
 ],
 
 "phrasal": [
     [["bring", "forth"], ["llevar a cabo", "llevar adelante", "presentar", "crear"], "separable", "With effort they managed to b_ _ the project they had always dreamt of"],
-    [["lash", "down"], ["llover con fuerza", "sujetar con fuerza"], "intransitive", "I wanted to do some hiking yesterday, but rain was l_ _ all through the day"]
+    [["lash", "down"], ["llover con fuerza", "sujetar con fuerza"], "intransitive", "I wanted to do some hiking yesterday, but rain was l_ _ all through the day"],
+    [["whittle", "away"], ["reducir gradualmente"], "separable", "The years did w_ a_ his strength"],
+    [["whittle", "down"], ["reducir gradualmente"], "separable", "We had eighty applicants, but we've managed to w_ them d_ to six"],
+    [["whittle", "away", "at"], ["reducir gradualmente"], "intransitive", "Hopefully the measures will w_ a_ _ the budget deficit"]
 ],
 
 "expression": [
@@ -95,18 +142,33 @@
     ["So many years of alcoholism ended up taking a toll on him", "Tantos años de alcoholismo acabaron pasándole factura"],
     ["Could you advance me £500 until Tuesday?", "Podrías adelantarme 500£ hasta el martes?"],
     ["You are making considerable advances in your studies", "Estás haciendo avances considerables en tus estudios"],
-    ["This book deals with history", "Este libro trata de historia"]
+    ["This book deals with history", "Este libro trata de historia"],
+    ["I am going to capture that criminial if it's the last thing I do", "Voy a capturar a ese criminal aunque sea lo último que haga"],
+    ["If it's not one thing, it's another", "Cuando no es una cosa, es la otra"],
+    ["How are you fixed for Sunday?", "¿Cómo andas de disponibilidad el domingo?"],
+    ["Those varieties will be our principal object of study in this book", "Esas variedades seran nuestro principal objeto de estudio en este libro"],
+    ["Jackpot!", "Premio gordo!"],
+    ["In fields, the previous equation takes a different form", "En cuerpos, la ecuación anterior toma una forma distinta"],
+    ["I think going places would open your mind", "Creo que ir a sitios te abriría la mente"],
+    ["After the meal, we made a tost to his health", "Después de la comida, hicimos un brindis a su salud"],
+    ["You can't really draw a comparison between the two situations", "Realmente no puedes hacer una comparación de las dos situaciones"],
+    ["Yesterday I got a flat tyre, but luckily my uncle was free to bail me out", "Ayer se me pinchó la rueda, pero por suerte mi tío estaba libre para salvarme del apuro"],
+    ["What poetic justice it is that Mary's car got scratched by her own students", "Qué justicia poética es que el el coche de Mary se lo rayaran sus propios estudiantes"],
+    ["Sirloin is a cut of meat", "El solomillo es un corte de carne"],
+    ["Hello everyone, you are listening slash watching 'The Command Zone'", "Hola a todos, estáis escuchando barra viendo 'La Zona de Comando'"],
+    ["If you can run the errand before this afternoon, (mucho mejor)", "so much the better"]
 ],
 
 "field": [
     ["Ways to express 'gritar'", ["shout", "yell", "skriek", "scream", "squeal", "screech", "cry", "squall"]],
     ["Ways to express 'brillar'", ["shine", "glow", "shimmer", "glitter", "glisten", "sparkle", "gleam", "glimmer", "radiate"]],
     ["Ways to express 'mordaz'", ["mordant", "biting", "scathing", "caustic", "sarcastic"]],
-    ["[Banish, Essay Verbs -> Characters]\n    The main character (tries to) to overcome his childhood ghosts", ["attempts", "seeks", "sets out", "strives", "struggles", "endeavours", "determines", "battles", "fights"]],
+    ["[Banish, Essay Verbs -> Characters]\n    The main character {tries} to overcome his childhood ghosts", ["attempts", "seeks", "sets out", "strives", "struggles", "endeavours", "determines", "battles", "fights"]],
     ["[Banish, Essay Verbs -> Characters]\n    Halfway through the story, she (discovers, understands) the truth", ["learns", "understands", "figures out", "recognises", "finds out"]],
-    ["[Banish, Essay Verbs -> Characters]\n    The protagonist (suffers, lives) the difficulties of life on the streets", ["deals with", "copes with", "endures", "grapples with", "experiences", "undergoes", "faces"]],
-    ["[Banish, Essay Verbs -> Compare/Contrast]\n    This feature article (-) the consequences of poaching in developing countries", ["analyses", "explores", "identifies", "presents", "describes", "examines", "focuses on", "deals with", "explains", "points out", "highlights"]],
-    ["[Banish, Essay Verbs -> Describe]\n    The excerpt (describes) some pictorial techniques used by pre-Raphaelite artists", ["depicts", "illustrates", "portrays", "presents"]]
+    ["[Banish, Essay Verbs -> Characters]\n    The protagonist {suffers, lives} the difficulties of life on the streets", ["deals with", "copes with", "endures", "grapples with", "experiences", "undergoes", "faces"]],
+    ["[Banish, Essay Verbs -> Compare/Contrast]\n    This feature article {} the consequences of poaching in developing countries", ["analyses", "explores", "identifies", "presents", "describes", "examines", "focuses on", "deals with", "explains", "points out", "highlights"]],
+    ["[Banish, Essay Verbs -> Describe]\n    The excerpt {describes} some pictorial techniques used by pre-Raphaelite artists", ["depicts", "illustrates", "portrays", "presents"]],
+    ["Cereals", ["barley", "wheat", "rye", "oats", "maize", "rice", "sorghum", "millet"]]
 ],
 
 "idiom": [
@@ -115,10 +177,27 @@
     ["someone's Achilles' heel", "el talón de Aquiles/punto débil de alguien"],
     ["bring all the boys to the yard", "ser irresistible para los chicos, especialmente sexualmente"],
     ["there's a lid for every pot", "siempre hay un roto para un descosido"],
-    ["Don't humor me", "no me des la razón como a los tontos"]
+    ["don't humour me", "no me des la razón como a los tontos"],
+    ["an image is worth a thousand words", "una imagen vale más que mil palabras"],
+    ["like two peas in a pod", "como dos gotas de agua"],
+    ["to be toast", "estar en el horno, jodido"],
+    ["armed to the teeth", "armado hasta los dientes"]
 ],
 
 "choice": [
+    ["[UK/US] Parabrisas", ["windshield = US, windscreen = UK", "windshield = UK, windscreen = US", "no geographic difference"]],
+    ["[UK/US] Cortezas", ["pork rinds = US, pork scratchings = UK", "pork rinds = UK, pork scratchings = US", "no geographic difference"]],
+    ["[UK/US] Neumático", ["tyre = UK, tire = US", "tyre = US, tire = UK", "no geographic difference"]],
+    ["Stress of 'comment'", ["'comment = noun and verb", "com'ment = noun, 'comment = verb", "com'ment = verb, 'comment = noun", "com'ment = noun and verb"]],
+    ["'Denote [preposition]: which one is it safest to use?", ["This ring is denoted by O", "This ring is denoted as O", "This ring is denoted O", "Both are equally as good"]],
+    ["Decease, disease: voiced or unvoiced s?", ["Decease: s, s; Disease: z, z", "Decease: s, z; Disease: s, z", "Decease: s, z; Disease: s, z", "Decease: s, s; Disease: s, s", "Decease: z, z; Disease: s, s"]],
+    ["Decease: noun or verb?", ["both, but only used as a noun nowadays", "both, equally used", "noun only", "verb only"]],
+    ["Excited for/about?", ["both", "'for' only", "'about' only"]],
+    ["Re-enact or reenact?", ["both are correct", "always hyphenated", "never hypheneted"]],
+    ["Noun derived from reacted from 'reenact'", ["reenactment/re-enactment", "reenaction/re-enaction", "none", "both"]]
+],
+
+"spelling": [
 
 ]
 
