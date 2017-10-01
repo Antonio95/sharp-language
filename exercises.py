@@ -3,26 +3,34 @@ import signal
 import random
 import collections
 import readline
+import shutil
 
 import json
 from colorama import init, Fore, Back, Style
 
 
 # TODOs
-# format review (limit to 99 questions/drill?)
-# Revise points
-# Drill options:
-#    examples
-#    verbose (show all translations)
-# Tracking system
-# Accept new answer
-# Select types of exercises
-# Show data
-# acentos
-# [, ] quitar automaticamente?
-# derivative words
-# puntos en material
-# PHONETICS; EXERCISES: HOMOPHONES
+#     DONE Select types of exercises
+#     DONE records (tracked)
+#     DONE Select types of exercises
+#     use records
+#     full installation & use guide
+#     performance: select the questions Before loading
+#     Done Phonetics
+#     exercise: HOMOPHONES
+#     format review (limit to 99 questions/drill?)
+#     Revise points
+#     Drill options
+#         examples
+#         verbose (show all translations)
+#     Accept new answer
+#     Show data
+#     revisar acentos
+#     [, ] quitar automaticamente?
+#     derivative words
+#     puntos en material
+#     correct: word field, answer with spaces: it then appears without them
+#     exercise: match?
 
 
 ################################################################################
@@ -57,7 +65,9 @@ QUESTIONS = collections.OrderedDict([
     ("Expression", {'ask': True}),
     ("Word field", {'ask': True}),
     ("Idioms", {'ask': True}),
-    ("Multiple choice", {'ask': True})
+    ("Multiple choice", {'ask': True}),
+    ("Pronunciation", {'ask': True})
+
 ])
 
 
@@ -298,7 +308,44 @@ class MultipleChoiceQuestion(Question):
             
 
     def brief(self):
-        return self.question
+        return self.question + '-> ' + self.answers[0]
+
+
+class PronunciationQuestion(Question):
+
+    def __init__(self, word, example, alternatives):
+        self.word = word
+        self.example = example
+        self.alternatives = alternatives
+
+    def ask(self, mode=0):
+
+        print(Fore.YELLOW + '[*] Select the correct pronunciation for the capitalised syllable: ' , self.word, Fore.RESET)
+
+        right = self.alternatives[0]
+        shuffled = list(self.alternatives)
+        random.shuffle(shuffled)
+        n = len(shuffled)
+
+        for (i, opt) in enumerate(shuffled):
+            print('    ', i + 1, ': ', opt, sep='')
+
+        print('')
+
+        ans = number_input_loop('    Enter the number corresponding to the right answer: ', 1, n) - 1
+        
+        if shuffled[ans] == right:
+            outcome = 1
+        else:
+            print("    Ouch, it was:", right)
+            outcome = 0
+
+        print(Fore.YELLOW + '    You can practise by saying the following sentence out loud:\n' + self.example, Fore.RESET)            
+        return outcome 
+
+
+    def brief(self):
+        return self.word + ': ' + self.alternatives[0]
 
 
 ################################################################################
@@ -329,13 +376,14 @@ def load():
     with open(MATERIAL_PATH, 'r') as file:
         material = json.load(file)
 
-        QUESTIONS["Vocabulary"]["exercises"] = [VocabularyQuestion(*v) for v in material['vocabulary']]
-        QUESTIONS["Fill in"]["exercises"] = [FillQuestion(*f) for f in material['fill']]
-        QUESTIONS["Phrasal verbs"]["exercises"] = [PhrasalQuestion(*p) for p in material['phrasal']]
-        QUESTIONS["Expression"]["exercises"] = [ExpressionQuestion(*e) for e in material['expression']]
-        QUESTIONS["Word field"]["exercises"] = [FieldQuestion(*s) for s in material['field']]
-        QUESTIONS["Idioms"]["exercises"] = [IdiomQuestion(*i) for i in material['idiom']]
-        QUESTIONS["Multiple choice"]["exercises"] = [MultipleChoiceQuestion(*c) for c in material['choice']]
+        QUESTIONS["Vocabulary"]["exercises"] = [VocabularyQuestion(*v['item']) for v in material['vocabulary']]
+        QUESTIONS["Fill in"]["exercises"] = [FillQuestion(*f['item']) for f in material['fill']]
+        QUESTIONS["Phrasal verbs"]["exercises"] = [PhrasalQuestion(*p['item']) for p in material['phrasal']]
+        QUESTIONS["Expression"]["exercises"] = [ExpressionQuestion(*e['item']) for e in material['expression']]
+        QUESTIONS["Word field"]["exercises"] = [FieldQuestion(*s['item']) for s in material['field']]
+        QUESTIONS["Idioms"]["exercises"] = [IdiomQuestion(*i['item']) for i in material['idiom']]
+        QUESTIONS["Multiple choice"]["exercises"] = [MultipleChoiceQuestion(*c['item']) for c in material['choice']]
+        QUESTIONS["Pronunciation"]["exercises"] = [PronunciationQuestion(*c['item']) for c in material['pronunciation']]
 
 
 def erase(nl=True):
@@ -390,7 +438,7 @@ def drill(n=10, review=False):
     settings = input_loop('Keep or change these settings? [keep, change]: ', ['keep', 'k', 'change', 'c'])
 
     if 'change' == settings or 'c' == settings:
-        n = number_input_loop(Fore.YELLOW + '    * Enter the number of questions (1 to {}): '.format(10**N_QUESTIONS_DIGITS - 1) + Fore.RESET, 1, 10**N_QUESTIONS_DIGITS - 1)
+        n = number_input_loop(Fore.YELLOW + '    * Enter the number of questions (1 to {}): '.format(10 ** N_QUESTIONS_DIGITS - 1) + Fore.RESET, 1, 10**N_QUESTIONS_DIGITS - 1)
         review = input_loop(Fore.YELLOW + '    * Give the option to review at the end? [yes, no]: ' + Fore.RESET, ['yes', 'no']) == 'yes'
         print(Fore.YELLOW + '    * Select which types of questions you want [yes, no]:' + Fore.RESET)
         for typ, val in QUESTIONS.items():
@@ -442,28 +490,63 @@ def drill(n=10, review=False):
         print('\n'.join([Fore.YELLOW + '{:4}'.format(str(i + 1) + '.') + Fore.RESET + q.brief() for (i, q) in enumerate(selected_q)]))
 
 
+def reset_records(filename='material.json'):
+
+    ans = input_loop('Are you sure you want to reset the answers record for ' + Fore.CYAN + filename + Fore.RESET + '? (yes, no): ', ['yes', 'y', 'no', 'n'])
+
+    if ans in ['yes', 'y']:
+
+        with open(filename, 'r') as file:
+            questions = json.load(file)
+
+            for elems in questions.values():
+                for e in elems:
+                    e['record']  = []
+
+        with open(filename, 'w') as file:
+            json.dump(questions, file)
+
+        print('Record reset successful')
+
+    else:
+        print('Record reset aborted')
+
+
+def backup_records(target, source='material.json'):
+
+    ans = input_loop('Are you sure you want to backup the records from ' + Fore.CYAN + source + Fore.RESET + ' into ' + Fore.CYAN + target + Fore.RESET + '? (yes, no): ', ['yes', 'y', 'no', 'n'])
+
+    if ans in ['yes', 'y']:
+        shutil.copyfile(source, target)
+        print('Record backup successful')
+    else:
+        print('Record backup aborted')
+
+
 ################################################################################
 # MAIN #
 ########
 
-init()
-load()
-signal.signal(signal.SIGTSTP, signal_handler_casual_mode)
+# init()
+# load()
+# signal.signal(signal.SIGTSTP, signal_handler_casual_mode)
 
-erase()
+# erase()
 
-print('Sharp Language v0.6, by Antonio Mejías', Fore.BLUE, '\nhttps://github.com/Antonio95/', Fore.RESET)
-print('\nNumber of items stored:')
-for typ, val in QUESTIONS.items():
-    print('    ' + typ, ': ', len(val['exercises']), sep='')
-print('    * Total:', sum([len(v['exercises']) for v in QUESTIONS.values()]))
-print('\nUse ' + Fore.YELLOW + 'ctrl+z ' + Fore.RESET + 'at any time to switch casual mode on or off')
-print('Use ' + Fore.RED + 'ctrl+c ' + Fore.RESET + 'at any time to quit')
+# print('Sharp Language v0.7, by Antonio Mejías', Fore.BLUE, '\nhttps://github.com/Antonio95/', Fore.RESET)
+# print('\nNumber of items stored:')
+# for typ, val in QUESTIONS.items():
+#     print('    ' + typ, ': ', len(val['exercises']), sep='')
+# print('    * Total:', sum([len(v['exercises']) for v in QUESTIONS.values()]))
+# print('\nUse ' + Fore.YELLOW + 'ctrl+z ' + Fore.RESET + 'at any time to switch casual mode on or off')
+# print('Use ' + Fore.RED + 'ctrl+c ' + Fore.RESET + 'at any time to quit')
 
-input('\n(Press Enter to continue)')
+# input('\n(Press Enter to continue)')
 
-drill(10, review=True)
+# drill(10, review=True)
 
-input('\n(Press Enter to finish)')
+# input('\n(Press Enter to finish)')
 
-erase(nl=False)
+reset_records()
+
+#erase(nl=False)
