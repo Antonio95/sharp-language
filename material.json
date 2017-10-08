@@ -172,7 +172,37 @@
     {"record": [], "item": ["pasty", ["empanadilla", "macilento", "pálido"]]},
     {"record": [], "item": ["platillo (bajo taza)", ["saucer"]]},
     {"record": [], "item": ["saucer", ["platillo", "platillo (de taza)", "platillo (bajo taza)"]]},
-    {"record": [], "item": ["fuente (recipiente)", ["platter"]]}
+    {"record": [], "item": ["fuente (recipiente)", ["platter"]]},
+    {"record": [], "item": ["riffle (sth)", ["hojear", "hojear (algo)", "ondular", "ondular (algo)", "agitar", "agitar (algo)"]]},
+    {"record": [], "item": ["bisutería", ["costume jewellery", "junk jewellery", "imitation jewellery", "costume jewelry", "junk jewelry", "imitation jewelry"]]},
+    {"record": [], "item": ["wound up", ["nervioso", "agitado", "estresado"]]},
+    {"record": [], "item": ["adoptar una postura", ["adopt a posture"]]},
+    {"record": [], "item": ["ludicrous", ["ridículo, absurdo"]]},
+    {"record": [], "item": ["sociable", ["sociable"]]},
+    {"record": [], "item": ["social", ["societal"]]},
+    {"record": [], "item": ["repleto (de)", ["packed, packed (with)", "awash", "awash (with)", "replete", "replete (with)", "filled", "filled (with)"]]},
+    {"record": [], "item": ["silla giratoria", ["swivel chair"]]},
+    {"record": [], "item": ["rótula", ["capella", "kneecap"]]},
+    {"record": [], "item": ["genio (mágico)", ["genie"]]},
+    {"record": [], "item": ["carraspear", ["clear your throat", "clear one's throat", "rasp"]]},
+    {"record": [], "item": ["grasping", ["avaro", "avaricioso"]]},
+    {"record": [], "item": ["sastrería", ["outfitter's", "tailor's", "tailor shop"]]},
+    {"record": [], "item": ["wyvern", ["dragón", "dragón heráldico"]]},
+    {"record": [], "item": ["dragón heráldico", ["wyvern"]]},
+    {"record": [], "item": ["scoffer", ["mofarse", "reírse con desdén", "engullir"]]},
+    {"record": [], "item": ["reírse con desdén", ["scoffer"]]},
+    {"record": [], "item": ["nudge", ["dar un codazo", "codazo", "llamar con el codo", "empujoncito", "dar un empujoncito"]]},
+    {"record": [], "item": ["nightingale", ["ruiseñor"]]},
+    {"record": [], "item": ["fret", ["erosionar", "corroer", "roer", "preocuparse"]]},
+    {"record": [], "item": ["secadora", ["tumble dryer", "dryer"]]},
+    {"record": [], "item": ["muleta", ["crutch"]]},
+    {"record": [], "item": ["expiar/reparar algo", ["atone for sth"]]},
+    {"record": [], "item": ["salirse con la suya", ["get one's way", "have one's way"]]},
+    {"record": [], "item": ["esmerarse", ["put your best foot forward", "take great pains", "go to a lot of effort", "go to great efforts"]]},
+    {"record": [], "item": ["alborotar (el pelo)", ["tousle", "ruffle"]]},
+    {"record": [], "item": ["contratiempo", ["setback"]]},
+    {"record": [], "item": ["alicaído", ["downcast, low-spirited"]]},
+    {"record": [], "item": ["poised", ["en equilibrio", "tranquilo", "sereno", "equilibrado"]]}
 ],
 
 "fill": [
@@ -231,14 +261,30 @@
     {"record": [], "item": ["As unlikely as it had seemed, the government eventually (dio marcha atrás) on the measure in the face of public opposition", "backpedalled"]},
     {"record": [], "item": ["Walking on the (con aguanieve) pavement was as romantic as it was dangerous", "sleety"]},
     {"record": [], "item": ["Everyone (se apiñó) round the fire to keep warm", "huddled"]},
-    {"record": [], "item": ["The pirates started using statue heads as (temporal, improvisad) ammunition for their cannons", "makeshift"]},
+    {"record": [], "item": ["The pirates started using statue heads as (temporal, improvisado) ammunition for their cannons", "makeshift"]},
     {"record": [], "item": ["The meeting was a failure due to the lack of interactivity of the (asistentes)", "attendees"]},
     {"record": [], "item": ["Law enforcement is important, both (_ _, en lo que respecta a) public security and constitutional order", "as regards"]},
     {"record": [], "item": ["Every Friday evening we head down to the (bar del barrio) and chill out for a couple of hours", "local"]},
     {"record": [], "item": ["Much to our relief, the patient (respondió) to the treatment and was soon out of danger", "responded"]},
     {"record": [], "item": ["The child ate the biscuits he had been told not to, and his parents gave him a (regañina)", "scolding"]},
     {"record": [], "item": ["The plane is (en tierra) because of bad weather", "grounded"]},
-    {"record": [], "item": ["There are thousands of traffic (muertes) every year", "fatalities"]}
+    {"record": [], "item": ["There are thousands of traffic (muertes) every year", "fatalities"]},
+    {"record": [], "item": ["She's mad about (la joyería)", "jewellery"]},
+    {"record": [], "item": ["It's quite a (curre) to get those cards flipped", "procedure"]},
+    {"record": [], "item": ["We had a (curre) finding a new house", "job"]},
+    {"record": [], "item": ["Patrick is always (de postureo), it gets on my nerves", "posturing"]},
+    {"record": [], "item": ["The male brain is (a_ _, repleto de) hormones", "awash"]},
+    {"record": [], "item": ["I am in (estrecho) contact with other members of the department", "close"]},
+    {"record": [], "item": ["She had a deep, (áspera) voice", "raspy"]},
+    {"record": [], "item": ["'I am not entirely sure that is the best course of action', I (dije con cautela)", "hedged"]},
+    {"record": [], "item": ["He looked much older (de cerca)", "close up"]},
+    {"record": [], "item": ["Don't let his (lágrimas de cocodrilo) fool you", "crocodile tears"]},
+    {"record": [], "item": ["She knew how and when to turn on the (lagrimones) to get what she wanted", "waterworks"]},
+    {"record": [], "item": ["You and I will be (separando nuestros caminos) soon", "parting ways"]},
+    {"record": [], "item": ["The murder is suspected to be a (ajuste de cuentas) between two rival gangs", "settling of scores"]},
+    {"record": [], "item": ["Don't worry, he's a (don nadie)", "nobody"]},
+    {"record": [], "item": ["The girl was lean and (de tez clara)", "fair complected"]},
+    {"record": [], "item": ["The cat was (p_ _, listo para) for flight as the dog drew nearer", "poised for"]}
 ],
 
 "phrasal": [
@@ -248,9 +294,13 @@
     {"record": [], "item": [["whittle", "down"], ["reducir gradualmente", "reducir progresivamente"], "separable", "We had eighty applicants, but we've managed to w_ them d_ to six"]},
     {"record": [], "item": [["whittle", "away", "at"], ["reducir gradualmente", "reducir progresivamente"], "intransitive", "Hopefully the measures will w_ a_ _ the budget deficit"]},
     {"record": [], "item": [["drone", "on"], ["hablar sin parar", "hablar sin cesar"], "intransitive", "I slipped out the back door before she began to d_ _"]},
-    {"record": [], "item": [["nagging", "away", "at"], ["atormentar", "preocupar", "dar vueltas", "dar vueltas a la cabeza"], "intransitive", "The same thought has been n_ a_ _ me since last week"]},
+    {"record": [], "item": [["nag", "away", "at"], ["atormentar", "preocupar", "dar vueltas", "dar vueltas a la cabeza"], "intransitive", "The same thought has been n_ a_ _ me since last week"]},
     {"record": [], "item": [["be", "in", "for"], ["ir a recibir", "ir a sufrir"], "inseparable", "I thought we'd b_ _ _ heavy rain that day, but luckily it wasn't the case"]},
-    {"record": [], "item": [["call", "off"], ["cancelar", "suspender"], "separable", "The meeting was c_ _ due to a serious accident blocking the road to the venue"]}
+    {"record": [], "item": [["called", "off"], ["cancelar", "suspender"], "separable", "The meeting was c_ _ due to a serious accident blocking the road to the venue"]},
+    {"record": [], "item": [["step", "in", "for"], ["ayudar", "suspender"], "separable", "The meeting was c_ _ due to a serious accident blocking the road to the venue"]},
+    {"record": [], "item": [["butter", "up"], ["dorar la píldora"], "separable", "You'll have to b_ your boss _ before asking for the raise"]},
+    {"record": [], "item": [["put", "forward"], ["ofrecer", "postular"], "separable", "I simply wanted to p_ it _ as a possibility"]}
+
 ],
 
 "expression": [
@@ -303,7 +353,21 @@
     {"record": [], "item": ["Having said which, you do have a point there", "Dicho lo cual, sí que tienes un punto de razón ahí"]},
     {"record": [], "item": ["Don't talk back to your father!", "¡No contestes a tu padre!"]},
     {"record": [], "item": ["I always roll up my cuffs before eating", "Siempre me remango los puños antes de comer"]},
-    {"record": [], "item": ["I'm glad you're finally seeing someone about that", "Me alegro de que por fin te estés mirando eso con alguien"]}
+    {"record": [], "item": ["I'm glad you're finally seeing someone about that", "Me alegro de que por fin te estés mirando eso con alguien"]},
+    {"record": [], "item": ["I'd take a Ferrari over a Porsche any day of the week", "Elegiría un Ferrari antes que un Porsche en cualquier momento"]},
+    {"record": [], "item": ["Elbows off the table", "Los codos fuera de la mesa"]},
+    {"record": [], "item": ["Don't talk with your mouth full", "No hables con la boca llena"]},
+    {"record": [], "item": ["I have three outfits appropriate for Turkey", "Tengo tres conjuntos (de ropa) apropiados para Turquía"]},
+    {"record": [], "item": ["Come again?", "¿Cómo? (repetir)"]},
+    {"record": [], "item": ["It was on the cards he was going to fail", "Estaba escrito que iba a suspender"]},
+    {"record": [], "item": ["First you lose your job, and it all goes downhill from there", "Primero pierdes el trabajo, y todo va cuesta abajo desde ahí"]},
+    {"record": [], "item": ["I won't take up any more of your morning", "No te robaré nada más de tu mañana"]},
+    {"record": [], "item": ["I know I stretch the truth from time to time", "Sé que estiro la verdaz de cuando en cuando"]},
+    {"record": [], "item": ["Come to think of/about it, your original theory wasn't that off", "Ahora que lo pienso, tu teoría original no estaba tan equivocada"]},
+    {"record": [], "item": ["Please, just let things run/follow their course", "Por favor, simplemente deja que las cosas sigan su curso"]},
+    {"record": [], "item": ["You've got it all backwards", "Lo has entendido todo al revés"]},
+    {"record": [], "item": ["Look who's talking", "Mira quién habla"]},
+    {"record": [], "item": ["I read you loud and clear", "Le recibo alto y claro"]}
 ],
 
 "field": [
@@ -311,7 +375,7 @@
     {"record": [], "item": ["Ways to express 'brillar'", ["shine", "glow", "shimmer", "glitter", "glisten", "sparkle", "gleam", "glimmer", "radiate"]]},
     {"record": [], "item": ["Ways to express 'mordaz'", ["mordant", "biting", "scathing", "caustic", "sarcastic"]]},
     {"record": [], "item": ["[Banish, Essay Verbs -> Characters]\n    The main character {tries} to overcome his childhood ghosts", ["attempts", "seeks", "sets out", "strives", "struggles", "endeavours", "determines", "battles", "fights"]]},
-    {"record": [], "item": ["[Banish, Essay Verbs -> Characters]\n    Halfway through the story, she (discovers, understands) the truth", ["learns", "understands", "figures out", "recognises", "finds out"]]},
+    {"record": [], "item": ["[Banish, Essay Verbs -> Characters]\n    Halfway through the story, she (discovers, understands) the truth", ["learns", "figures out", "recognises", "finds out"]]},
     {"record": [], "item": ["[Banish, Essay Verbs -> Characters]\n    The protagonist {suffers, lives} the difficulties of life on the streets", ["deals with", "copes with", "endures", "grapples with", "experiences", "undergoes", "faces"]]},
     {"record": [], "item": ["[Banish, Essay Verbs -> Compare/Contrast]\n    This feature article {} the consequences of poaching in developing countries", ["analyses", "explores", "identifies", "presents", "describes", "examines", "focuses on", "deals with", "explains", "points out", "highlights"]]},
     {"record": [], "item": ["[Banish, Essay Verbs -> Describe]\n    The excerpt {describes} some pictorial techniques used by pre-Raphaelite artists", ["depicts", "illustrates", "portrays", "presents"]]},
@@ -335,7 +399,16 @@
     {"record": [], "item": ["lie through one's teeth", "mentir a sabiendas"]},
     {"record": [], "item": ["to be in a pickle", "estar en una situación difícil"]},
     {"record": [], "item": ["not to see the forest for the trees", "no dejar los árboles ver el bosque"]},
-    {"record": [], "item": ["to have a lot on one's plate", "tener muchas responsabilidades o quehaceres"]}
+    {"record": [], "item": ["to have a lot on one's plate", "tener muchas responsabilidades o quehaceres"]},
+    {"record": [], "item": ["to be as right as rain", "sentirse genial físicamente o recuperado"]},
+    {"record": [], "item": ["an apple a day keeps the doctor away", "una manzana al día ayuda a mantenerse sano"]},
+    {"record": [], "item": ["with flying colours", "hacer algo (e.g. aprobar un examen) fácil y brillantemente"]},
+    {"record": [], "item": ["are you bearish or bullish?", "¿eres pesimista u optimista? (sobre las tendencias del mercado)"]},
+    {"record": [], "item": ["rise and shine!", "arriba! (levantarse con energía)"]},
+    {"record": [], "item": ["gym bunny", "alguien que está obsesionado con el gimnasio"]},
+    {"record": [], "item": ["for crying out loud", "por el amor de Dios"]},
+    {"record": [], "item": ["put more oil on the fire", "echar más leña al fuego"]},
+    {"record": [], "item": ["nudge nudge wink wink", "guiño guiño codo codo"]}
 ],
 
 "choice": [
@@ -350,7 +423,7 @@
     {"record": [], "item": ["[UK/US] A contracorriente (fig.)", ["against the flow = US, against the tide = UK", "agasint the flow = UK, against the tide = US", "no geographic difference"]]},
     {"record": [], "item": ["[UK/US] Pocilga", ["pigsty = UK, pigpen = US", "pigsty = US, pigpen = UK", "no geographic difference"]]},
     {"record": [], "item": ["Stress of 'comment'", ["'comment = noun and verb", "com'ment = noun, 'comment = verb", "com'ment = verb, 'comment = noun", "com'ment = noun and verb"]]},
-    {"record": [], "item": ["Denote + preposition: which one is it safest to use?", ["This ring is denoted by O", "This ring is denoted as O", "This ring is denoted O", "Both are equally as good"]]},
+    {"record": [], "item": ["Denote + preposition: which one is it safest to use?", ["this ring is denoted by O", "this ring is denoted as O", "this ring is denoted O", "all three are equally as good"]]},
     {"record": [], "item": ["Decease, disease: voiced or unvoiced s?", ["Decease: s, s; Disease: z, z", "Decease: s, z; Disease: s, z", "Decease: s, z; Disease: s, z", "Decease: s, s; Disease: s, s", "Decease: z, z; Disease: s, s"]]},
     {"record": [], "item": ["Decease: noun or verb?", ["both, but only used as a noun nowadays", "both, equally used", "noun only", "verb only"]]},
     {"record": [], "item": ["Excited for/about?", ["both", "'for' only", "'about' only"]]},
@@ -359,7 +432,13 @@
     {"record": [], "item": ["Spelling of w[h]acky", ["wacky, the h form being an old version that may be regarded as wrong", "wacky only", "whacky only", "both equally valid"]]},
     {"record": [], "item": ["Collocation: titanic vs. superhuman effort", ["both collocate", "superhuman effort", "none collocate", "titanic effort"]]},
     {"record": [], "item": ["Alas: which of these uses is the correct one?", ["all of them are", "Alas, catfish football is no more", "The former seems alas the more likely bit of conjecture", "Alas! If a witty rebuke could shut down a bully, things would be very different now"]]},
-    {"record": [], "item": ["Dive, dove/dived, d...?", ["dived", "diven", "doven", "dived or diven", "none of those"]]}
+    {"record": [], "item": ["Dive, dove/dived, d...?", ["dived", "diven", "doven", "dived or diven", "none of those"]]},
+    {"record": [], "item": ["Posture: meaning", ["opinion, attitude", "physical position"]]},
+    {"record": [], "item": ["Talk with or to?", ["both valid in US, talk to preferred in UK", "both valid in the UK, talk to preferred in the US", "no geographic difference, subtle difference in meaning", "no difference whatsoever"]]},
+    {"record": [], "item": ["Swell, ?, ?", ["swell, swelled, swollen/swelled", "swell, swolle, swollen", "swell, swolle/swelled, swollen"]]},
+    {"record": [], "item": ["Grupo de trabajo", ["both are correct", "workgroup", "work group"]]},
+    {"record": [], "item": ["Drier, dryer: modern use", ["drier = comparative of dry, dryer = appliance that dries", "no difference nowadays", "drier = appliance that dries, dryer = comparative of dry"]]},
+    {"record": [], "item": ["Loose, lose: pronunciation", ["loose = luːs, lose = luːz", "loose = luːz, lose = luːs", "neither of those"]]}
 ],
 
 "spelling": [
@@ -370,7 +449,9 @@
     {"record": [], "item": ["proNUNciation", "One must always be understanding about the pronunciation of foreign speakers", ["nʌn", "naʊn"]]},
     {"record": [], "item": ["TApestry", "The hall was bedecked with rich trapestries featuring war scenes", ["tæ", "teɪ"]]},
     {"record": [], "item": ["PASty", "(UK) The chef brought in a platter full of succulent pasties", ["peɪ", "pɑː", "pæ"]]},
-    {"record": [], "item": ["sucCUlent", "The witch offered me a box of succulent chocolates", ["kjʊ", "kʌ"]]}
+    {"record": [], "item": ["sucCUlent", "The witch offered me a box of succulent chocolates", ["kjʊ", "kʌ"]]},
+    {"record": [], "item": ["aCOUStic", "The witch offered me a box of succulent chocolates", ["kuːs", "kjʊs"]]},
+    {"record": [], "item": ["RIvalry", "I new from early on that their rivalry would be their doom", ["raɪ", "rɪ"]]}        
 ]
 
 }

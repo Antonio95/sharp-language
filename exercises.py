@@ -242,7 +242,7 @@ class IdiomQuestion(Question):
         # remove apostrophes?
         clean_idiom = self.idiom.replace("'", '')
 
-        hint = ''.join([' ' if c == ' ' else '_' for c in clean_idiom])
+        hint = ''.join([' ' if c in [' ', '?', '!'] else '_' for c in clean_idiom])
         
         if len(clean_idiom) < N_MODIFIED_IDIOMS:
             raise Exception('Error: length of idiom: "{}" lower than number of characters to show ({}). Please modify your settings'.format(clean_idiom, N_MODIFIED_IDIOMS))
@@ -527,26 +527,26 @@ def backup_records(target, source='material.json'):
 # MAIN #
 ########
 
-# init()
-# load()
-# signal.signal(signal.SIGTSTP, signal_handler_casual_mode)
+#reset_records()
 
-# erase()
+init()
+load()
+signal.signal(signal.SIGTSTP, signal_handler_casual_mode)
 
-# print('Sharp Language v0.7, by Antonio Mejías', Fore.BLUE, '\nhttps://github.com/Antonio95/', Fore.RESET)
-# print('\nNumber of items stored:')
-# for typ, val in QUESTIONS.items():
-#     print('    ' + typ, ': ', len(val['exercises']), sep='')
-# print('    * Total:', sum([len(v['exercises']) for v in QUESTIONS.values()]))
-# print('\nUse ' + Fore.YELLOW + 'ctrl+z ' + Fore.RESET + 'at any time to switch casual mode on or off')
-# print('Use ' + Fore.RED + 'ctrl+c ' + Fore.RESET + 'at any time to quit')
+erase()
 
-# input('\n(Press Enter to continue)')
+print('Sharp Language v0.7.1, by Antonio Mejías', Fore.BLUE, '\nhttps://github.com/Antonio95/', Fore.RESET)
+print('\nNumber of items stored:')
+for typ, val in QUESTIONS.items():
+    print('    ' + typ, ': ', len(val['exercises']), sep='')
+print('    * Total:', sum([len(v['exercises']) for v in QUESTIONS.values()]))
+print('\nUse ' + Fore.YELLOW + 'ctrl+z ' + Fore.RESET + 'at any time to switch casual mode on or off')
+print('Use ' + Fore.RED + 'ctrl+c ' + Fore.RESET + 'at any time to quit')
 
-# drill(10, review=True)
+input('\n(Press Enter to continue)')
 
-# input('\n(Press Enter to finish)')
+drill(15, review=True)
 
-reset_records()
+input('\n(Press Enter to finish)')
 
-#erase(nl=False)
+erase(nl=False)
