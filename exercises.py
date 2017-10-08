@@ -7,6 +7,7 @@ import shutil
 
 import json
 from colorama import init, Fore, Back, Style
+import numpy
 
 
 # TODOs
@@ -14,6 +15,7 @@ from colorama import init, Fore, Back, Style
 #     DONE records (tracked)
 #     DONE Select types of exercises
 #     use records
+#     maybe the code can be improved (particularly at the beginning of drill() with ordered dictionaries
 #     full installation & use guide
 #     performance: select the questions Before loading
 #     Done Phonetics
@@ -33,11 +35,23 @@ from colorama import init, Fore, Back, Style
 #     exercise: match?
 
 
+# Onthos: choice of exercises to ask
+# * The current formula for the weighted probability of an item being asked is 
+#   T/(1 + C^2), where C is the number of previous correct answers and T is the total
+#   number of times it has been asked before (see exc. below)
+#   note that "sorta" answers count as 0.5 correct answers
+# * If an item is added to the material, the loading of the application will 
+#   include it in the records file. Its record will be empty and, as an 
+#   exception, its weight will be 2, which is equivalent to having been asked
+#   twice with 0 correct answers
+
+
 ################################################################################
 # GLOBALS #
 ###########
 
 MATERIAL_PATH = '/home/antonio/Desktop/cpe/python/material.json'
+RECORDS_PATH = '/home/antonio/Desktop/cpe/python/records.json'
 
 ACCEPT_NEW = False
 
@@ -61,14 +75,16 @@ CASUAL = False
 QUESTIONS = collections.OrderedDict([
     ("Vocabulary", {'ask': True}),
     ("Fill in", {'ask': True}),
-    ("Phrasal verbs", {'ask': True}),
     ("Expression", {'ask': True}),
+    ("Phrasal verbs", {'ask': True}),
     ("Word field", {'ask': True}),
     ("Idioms", {'ask': True}),
     ("Multiple choice", {'ask': True}),
     ("Pronunciation", {'ask': True})
 
 ])
+
+INITIAL_WEIGHT = 2
 
 
 ################################################################################
@@ -373,17 +389,32 @@ def load():
 
     global QUESTIONS
 
-    with open(MATERIAL_PATH, 'r') as file:
-        material = json.load(file)
+    print ('Loading...')
 
-        QUESTIONS["Vocabulary"]["exercises"] = [VocabularyQuestion(*v['item']) for v in material['vocabulary']]
-        QUESTIONS["Fill in"]["exercises"] = [FillQuestion(*f['item']) for f in material['fill']]
-        QUESTIONS["Phrasal verbs"]["exercises"] = [PhrasalQuestion(*p['item']) for p in material['phrasal']]
-        QUESTIONS["Expression"]["exercises"] = [ExpressionQuestion(*e['item']) for e in material['expression']]
-        QUESTIONS["Word field"]["exercises"] = [FieldQuestion(*s['item']) for s in material['field']]
-        QUESTIONS["Idioms"]["exercises"] = [IdiomQuestion(*i['item']) for i in material['idiom']]
-        QUESTIONS["Multiple choice"]["exercises"] = [MultipleChoiceQuestion(*c['item']) for c in material['choice']]
-        QUESTIONS["Pronunciation"]["exercises"] = [PronunciationQuestion(*c['item']) for c in material['pronunciation']]
+    with open(RECORDS_PATH, 'r') as rf:
+        records = json.load(rf)
+    
+        with open(MATERIAL_PATH, 'r') as mf:
+            material = json.load(mf)
+
+            for item in [inner for outer in material.values() for inner in outer.keys()]:
+                if item not in records:
+                    records[item] = [0, 0, INITIAL_WEIGHT]
+                    print('Added item', item, 'to records')
+
+    with open(RECORDS_PATH, 'w') as rf:
+        json.dump(records, rf, indent='    ')
+
+    QUESTIONS["Vocabulary"]["exercises"] = dict([(k, (v, records[k])) for k, v in material['vocabulary'].items()])
+    QUESTIONS["Fill in"]["exercises"] = dict([(k, (v, records[k])) for k, v in material['fill'].items()])
+    QUESTIONS["Phrasal verbs"]["exercises"] = dict([(k, (v, records[k])) for k, v in material['phrasal'].items()])
+    QUESTIONS["Expression"]["exercises"] = dict([(k, (v, records[k])) for k, v in material['expression'].items()])
+    QUESTIONS["Word field"]["exercises"] = dict([(k, (v, records[k])) for k, v in material['field'].items()])
+    QUESTIONS["Idioms"]["exercises"] = dict([(k, (v, records[k])) for k, v in material['idiom'].items()])
+    QUESTIONS["Multiple choice"]["exercises"] = dict([(k, (v, records[k])) for k, v in material['choice'].items()])
+    QUESTIONS["Pronunciation"]["exercises"] = dict([(k, (v, records[k])) for k, v in material['pronunciation'].items()])
+
+    print ('Loaded')    
 
 
 def erase(nl=True):
@@ -446,51 +477,86 @@ def drill(n=10, review=False):
 
     erase()
 
-    questions = []
+    questions = {}
 
     for val in QUESTIONS.values():
         if val['ask']:
-            questions += val['exercises']
+            questions.update(val['exercises'])
 
     if len(questions) < n:
         print(Fore.YELLOW + '/!\\ Number of requested questions ({}) larger than that of available ones ({})'
                             '\n    Drill reduced to {} questions'.format(n, len(questions), n), Fore.RESET + '\n')
         n = len(questions)
 
-    selected_q = random.sample(questions, n)
+    id_to_class = {
+        '1': VocabularyQuestion,
+        '2': FillQuestion,
+        '3': PhrasalQuestion,
+        '4': ExpressionQuestion,
+        '5': FieldQuestion,
+        '6': IdiomQuestion,
+        '7': MultipleChoiceQuestion,
+        '8': PronunciationQuestion,
+    }
+
+    sorted_ids = list(questions.keys())
+    sorted_weights = [questions[i][1][2] for i in sorted_ids]
+    total_weight = sum(sorted_weights)
+    sorted_weights = list(map(lambda x: x * 1.0 / total_weight, sorted_weights))
+    selected_ids = numpy.random.choice(sorted_ids, size=n, replace=False, p=sorted_weights)
+    selected_q = [id_to_class[i[0]](*questions[i][0]) for i in selected_ids]
     
-    score = 0
+    score, results = 0, []
 
     for q in selected_q:
         res = q.ask()
         print('    ->', FEEDBACK[res], end='\n\n')
         
         score += res
-        grade = 100.0 * score / n
+        results.append(res)
+    
+    grade = 100.0 * score / n
     
     print('Final score: {} out of {} ({}%). {}'.format(score, n, int(grade), praise(grade)))
 
     if review:
 
         ans = input_loop('Move on to review? (yes, no): ', ['yes', 'no'])
-        if 'no' == ans:
-            return
+        if 'yes' == ans:
+                
+            erase()
 
-        erase()
+            print('Score: {} out of {} ({}%)'.format(score, n, int(grade)), end='\n\n')
+            print('In order to review, enter a sentence involving each of the previous questions\n'
+                  'If at some point you cannot remember any more questions, enter an empty line to finish')
 
-        print('Score: {} out of {} ({}%)'.format(score, n, int(grade)), end='\n\n')
-        print('In order to review, enter a sentence involving each of the previous questions\n'
-              'If at some point you cannot remember any more questions, enter an empty line to finish')
+            for i in range(n):
+                if '' == input(Fore.YELLOW + '{:4}'.format(str(i + 1) + ':') + Fore.RESET):
+                    break
 
-        for i in range(n):
-            if '' == input(Fore.YELLOW + '{:4}'.format(str(i + 1) + ':') + Fore.RESET):
-                break
+            print('\nThe concepts featured in the questions were: ')
+            print('\n'.join([Fore.YELLOW + '{:4}'.format(str(i + 1) + '.') + Fore.RESET + q.brief() for (i, q) in enumerate(selected_q)]))
 
-        print('\nThe concepts featured in the questions were: ')
-        print('\n'.join([Fore.YELLOW + '{:4}'.format(str(i + 1) + '.') + Fore.RESET + q.brief() for (i, q) in enumerate(selected_q)]))
+    if not CASUAL:
+
+        print('Saving records, please do not exit now...')
+
+        with open(RECORDS_PATH, 'r') as rf:
+            records = json.load(rf)
+        
+            for n, i  in enumerate(selected_ids):
+                previous = records[i]
+                previous[0] += results[n]
+                previous[1] += 1
+                previous[2] = previous[1] * 1.0 / (1 + previous[0] ** 2)
+
+        with open(RECORDS_PATH, 'w') as rf:
+            json.dump(records, rf, indent='    ')
+
+        print('Saving records...')
 
 
-def reset_records(filename='material.json'):
+def reset_records(filename=RECORDS_PATH):
 
     ans = input_loop('Are you sure you want to reset the answers record for ' + Fore.CYAN + filename + Fore.RESET + '? (yes, no): ', ['yes', 'y', 'no', 'n'])
 
@@ -499,12 +565,11 @@ def reset_records(filename='material.json'):
         with open(filename, 'r') as file:
             questions = json.load(file)
 
-            for elems in questions.values():
-                for e in elems:
-                    e['record']  = []
+            for k in questions.keys():
+                questions[k] = [0, 0, INITIAL_WEIGHT]
 
         with open(filename, 'w') as file:
-            json.dump(questions, file)
+            json.dump(questions, file, indent='    ')
 
         print('Record reset successful')
 
@@ -512,7 +577,7 @@ def reset_records(filename='material.json'):
         print('Record reset aborted')
 
 
-def backup_records(target, source='material.json'):
+def backup_records(target, source=RECORDS_PATH):
 
     ans = input_loop('Are you sure you want to backup the records from ' + Fore.CYAN + source + Fore.RESET + ' into ' + Fore.CYAN + target + Fore.RESET + '? (yes, no): ', ['yes', 'y', 'no', 'n'])
 
@@ -526,8 +591,6 @@ def backup_records(target, source='material.json'):
 ################################################################################
 # MAIN #
 ########
-
-#reset_records()
 
 init()
 load()
@@ -550,3 +613,5 @@ drill(15, review=True)
 input('\n(Press Enter to finish)')
 
 erase(nl=False)
+
+# reset_records()
