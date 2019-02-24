@@ -4,8 +4,9 @@ import random
 import collections
 import readline
 import shutil
-
+import os
 import json
+
 from colorama import init, Fore, Back, Style
 import numpy
 
@@ -50,8 +51,10 @@ import numpy
 # GLOBALS #
 ###########
 
-MATERIAL_PATH = '/home/antonio/Desktop/cpe/python/material.json'
-RECORDS_PATH = '/home/antonio/Desktop/cpe/python/records.json'
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MATERIAL_PATH = os.path.join(BASE_DIR, 'material.json')
+RECORDS_PATH = os.path.join(BASE_DIR, 'records.json')
 
 ACCEPT_NEW = False
 
@@ -220,7 +223,7 @@ class FieldQuestion(Question):
         print(Fore.YELLOW + '[*] {} ({} words stored)'.format(self.prompt, len(self.field)), Fore.RESET)
 
         ans = input('    Enter any number of comma-separated words: ')
-        answers = ans.lower().replace(' ', '').split(',')
+        answers = [a.lstrip().rstrip() for a in ans.lower().split(',')]
         right, wrong = [], []
 
         # taking care of potentially repeated answers
@@ -230,8 +233,10 @@ class FieldQuestion(Question):
             if a not in self.field and a not in wrong:
                 wrong.append(a)
 
-        print('    Expected synonyms ({}): '.format(len(self.field)), ', '.join(self.field))
+        missing = [a for a in self.field if a not in answers]
+
         print('    Correct answers ({}): '.format(len(right)), ', '.join(right))
+        print('    Missing answers ({}): '.format(len(missing)), ', '.join(missing))
         print('    Wrong answers ({}): '.format(len(wrong)), ', '.join(wrong))
 
         s, r = len(self.field), len(right)
@@ -356,7 +361,7 @@ class PronunciationQuestion(Question):
             print("    Ouch, it was:", right)
             outcome = 0
 
-        print(Fore.YELLOW + '    You can practise by saying the following sentence out loud:\n' + self.example, Fore.RESET)            
+        print(Fore.YELLOW + '    You can practise by saying the following sentence out loud:\n    ' + self.example, Fore.RESET)            
         return outcome 
 
 
@@ -553,7 +558,7 @@ def drill(n=10, review=False):
         with open(RECORDS_PATH, 'w') as rf:
             json.dump(records, rf, indent='    ')
 
-        print('Saving records...')
+        print('Records saved')
 
 
 def reset_records(filename=RECORDS_PATH):

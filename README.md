@@ -8,3 +8,5 @@ I believe the code is pretty much self explanatory and can be used for various l
 For any questions on how to run the application, issues or offers to contribute (the list of intended upgrades is long), just send a message to **anmegi.95@gmail.com**, I'm always happy to help (and be helped!).
 
 Note: this is a **python 3** application
+Installation:
+    
